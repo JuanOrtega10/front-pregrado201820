@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AuthorModule } from './author/author.module';
+import { BookModule } from './book/book.module';
+import { EditorialModule } from './editorial/editorial.module';
 
 import { AppComponent } from './app.component';
 
@@ -8,7 +11,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AuthorModule,
+    BookModule,
+    EditorialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
