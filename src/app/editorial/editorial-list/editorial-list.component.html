@@ -1,3 +1,17 @@
-<p>
-  editorial-list works!
-</p>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Editorial Name</th>    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let editorial of editorials">
+                    <td>{{editorial.name}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>

@@ -1,27 +1,47 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {ComponentFixture, TestBed, async} from '@angular/core/testing';
+import {AppRoutingModule} from './app-routing/app-routing.module';
+import {APP_BASE_HREF} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
+
+import {AppComponent} from './app.component';
+import {BookListComponent} from './book/book-list/book-list.component';
+import {AuthorListComponent} from './author/author-list/author-list.component';
+import {EditorialListComponent} from './editorial/editorial-list/editorial-list.component';
+
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'bookstore'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('bookstore');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to bookstore!');
-  }));
+    let component: AppComponent;
+    let fixture: ComponentFixture<AppComponent>;
+
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [AppRoutingModule, HttpClientModule],
+            declarations: [AppComponent, BookListComponent, AuthorListComponent, EditorialListComponent],
+            providers: [{provide: APP_BASE_HREF, useValue: ''}]
+        })
+            .compileComponents();
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(AppComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create the app', async(() => {
+        expect(component).toBeTruthy();
+    }));
+
+    it(`should have as title 'Bookstore'`, async(() => {
+        const app = fixture.debugElement.componentInstance;
+        expect(app.title).toEqual(component.title);
+    }));
+
+    it('should render titles in the navbar', async(() => {
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        expect(compiled.querySelector('#booksTag').textContent).toContain('Books');
+        expect(compiled.querySelector('#authorsTag').textContent).toContain('Authors');
+        expect(compiled.querySelector('#editorialTag').textContent).toContain('Editorials');
+    }));
 });
+
