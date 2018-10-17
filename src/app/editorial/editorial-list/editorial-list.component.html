@@ -8,7 +8,7 @@
             </thead>
             <tbody>
                 <tr *ngFor = "let editorial of editorials">
-                    <td>
+                    <td style="cursor: pointer;">
                         <dd class="figure-caption" routerLink="/editorials/{{editorial.id}}">{{editorial.name}}</dd>
                     </td>
                 </tr>
