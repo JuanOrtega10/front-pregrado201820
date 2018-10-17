@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { Author } from './author';
 import { HttpClient } from '@angular/common/http';
-import 'rxjs/add/operator/catch';
 
 import { environment } from '../../environments/environment';
 const API_URL = environment.apiURL;

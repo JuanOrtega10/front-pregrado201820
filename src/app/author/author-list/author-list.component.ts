@@ -20,9 +20,7 @@ export class AuthorListComponent implements OnInit {
     * @param toastrService The toastr to show messages to the user
     */
     constructor(
-        private authorService: AuthorService,
-        private toastrService: ToastrService
-    ) { }
+        private authorService: AuthorService) { }
 
     /**
     * The list of authors which belong to the BookStore
@@ -37,8 +35,6 @@ export class AuthorListComponent implements OnInit {
         this.authorService.getAuthors()
             .subscribe(authors => {
                 this.authors = authors;
-            }, err => {
-                this.toastrService.error(err, "Error");
             });
     }
 

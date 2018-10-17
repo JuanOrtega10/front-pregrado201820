@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 import { Editorial } from '../editorial';
 import { EditorialService } from '../editorial.service';
@@ -20,9 +19,7 @@ export class EditorialListComponent implements OnInit {
     * @param toastrService The toastr to show messages to the user
     */
     constructor(
-        private editorialService: EditorialService,
-        private toastrService: ToastrService
-    ) { }
+        private editorialService: EditorialService) { }
 
     /**
     * The list of editorials which belong to the BookStore
@@ -36,8 +33,6 @@ export class EditorialListComponent implements OnInit {
         this.editorialService.getEditorials()
             .subscribe(editorials => {
                 this.editorials = editorials;
-            }, err => {
-                this.toastrService.error(err, "Error");
             });
     }
 
