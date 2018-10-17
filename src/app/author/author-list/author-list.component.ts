@@ -13,7 +13,7 @@ import { Author } from '../author';
     styleUrls: ['./author-list.component.css']
 })
 export class AuthorListComponent implements OnInit {
-    
+
     /**
     * Constructor for the component
     * @param authorService The author's services provider
@@ -23,25 +23,25 @@ export class AuthorListComponent implements OnInit {
         private authorService: AuthorService,
         private toastrService: ToastrService
     ) { }
-    
+
     /**
     * The list of authors which belong to the BookStore
     */
     authors: Author[];
-    
- 
+
+
     /**
     * Asks the service to update the list of authors
     */
     getAuthors(): void {
         this.authorService.getAuthors()
-        .subscribe(authors => {
-            this.authors = authors;
-        },err => {
+            .subscribe(authors => {
+                this.authors = authors;
+            }, err => {
                 this.toastrService.error(err, "Error");
-        });
+            });
     }
-    
+
     /**
     * This will initialize the component by retrieving the list of authors from the service
     * This method will be called when the component is created
@@ -49,5 +49,5 @@ export class AuthorListComponent implements OnInit {
     ngOnInit() {
         this.getAuthors();
     }
-    
+
 }
