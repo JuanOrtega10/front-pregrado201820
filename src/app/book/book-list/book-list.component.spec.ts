@@ -1,12 +1,13 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {APP_BASE_HREF} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
-
-import {AppModule} from '../../app.module';
-import {BookListComponent} from './book-list.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {AppRoutingModule} from '../../app-routing/app-routing.module';
-import {BookService} from '../book.service';
-import {Book} from '../book';
+import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppModule } from '../../app.module';
+
+import { BookListComponent } from './book-list.component';
+import { BookService } from '../book.service';
+import { Book } from '../book';
 
 describe('BookListComponent', () => {
     let component: BookListComponent;
@@ -17,7 +18,7 @@ describe('BookListComponent', () => {
         TestBed.configureTestingModule({
             imports: [AppRoutingModule, HttpClientModule, AppModule],
             declarations: [],
-            providers: [{provide: APP_BASE_HREF, useValue: ''}, BookService]
+            providers: [{ provide: APP_BASE_HREF, useValue: '' }, BookService]
         })
             .compileComponents();
     }));

@@ -30,7 +30,7 @@ export class BookListComponent implements OnInit {
     books: Book[];
 
     /**
-    * Asks the service to update the list of books
+    * This method retrieves all the books in the Bookstore to show them in the list
     */
     getBooks(): void {
         this.bookService.getBooks()
