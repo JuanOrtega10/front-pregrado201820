@@ -29,6 +29,7 @@ export class AuthorListComponent implements OnInit {
     */
     authors: Author[];
     
+ 
     /**
     * Asks the service to update the list of authors
     */
@@ -36,8 +37,8 @@ export class AuthorListComponent implements OnInit {
         this.authorService.getAuthors()
         .subscribe(authors => {
             this.authors = authors;
-        }, err => {
-            this.toastrService.error(err, "Error");
+        },err => {
+                this.toastrService.error(err, "Error");
         });
     }
     
