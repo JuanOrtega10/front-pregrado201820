@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpErrorInterceptor } from './interceptors/httperrorinterceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { EditorialModule } from './editorial/editorial.module';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -23,16 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         BookModule,
         EditorialModule,
         FormsModule,
+        BrowserAnimationsModule,
         ToastrModule.forRoot(),
-        BrowserAnimationsModule
+        SharedModule
     ],
-    bootstrap: [AppComponent],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpErrorInterceptor,
-            multi: true
-        }
-    ]
+
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

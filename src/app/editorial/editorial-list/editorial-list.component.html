@@ -1,15 +1,16 @@
 <div class="container-fluid">
-    <div class="col">
+    <div class="col-md-2">
         <table class="table table-striped">
-            <thead class="thead-dark">
+            <thead>
                 <tr>
-                    <th>Editorial Name</th>    
+                    <th>Name</th>    
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor = "let editorial of editorials">
-                    <td>{{editorial.name}}</td>
-
+                    <td style="cursor: pointer;">
+                        <dd class="figure-caption" routerLink="/editorials/{{editorial.id}}">{{editorial.name}}</dd>
+                    </td>
                 </tr>
             </tbody>
         </table>

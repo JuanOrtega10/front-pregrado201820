@@ -1,8 +1,10 @@
+import { Book } from "../book/book";
+
 /**
  * This class represents an author of the BookStore. 
  * It contains all the information relevant to the author.
  */
-export interface Author {
+export class Author {
     /**
     * The author's id
     */
@@ -22,4 +24,9 @@ export interface Author {
      * A brief description of the author's life
      */
     description: string;
+    
+    /**
+    * The list of books of the author
+    */
+    books: Book[];
 }

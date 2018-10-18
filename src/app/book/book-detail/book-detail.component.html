@@ -1,0 +1,40 @@
+<div class="panel panel-default"> 
+    <div>
+        <div class="border margin">
+            <h3>{{book.name}}</h3> 
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <img class="img-fluid" src="{{book.image}}"/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <dl>  
+                        <hr>
+                        <dt> Authors</dt>                      
+                        <div *ngFor = "let author of book.authors">
+                            <dd class="caption" routerLink="/authors/{{author.id}}">{{author.name}}</dd>
+                        </div>
+                        <hr>
+                        <dt> ISBN</dt>
+                        <dd>{{book.isbn}}</dd>
+                        <hr>
+                        <dt>Publishing Date</dt>
+                        <dd>{{book.publish_date| date:'yyyy-MM-dd'}}</dd>
+                        <hr>
+                        <dt class="bold">Editorial</dt>
+                        <dd class="caption" routerLink="/editorials/{{book.editorial.id}}">{{book.editorial.name}}</dd>
+                        <hr>
+                        <dt class="bold">Description</dt>
+                        <dd>{{book.description}}</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row border margin">
+        <h4>Other books you may like</h4>
+        <app-book-sidebar [books]="other_books"></app-book-sidebar>
+    </div>
+</div>
+

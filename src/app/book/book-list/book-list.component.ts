@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 import { Book } from '../book';
 import { BookService } from '../book.service';
@@ -17,11 +16,9 @@ export class BookListComponent implements OnInit {
     /**
     * Constructor of the component
     * @param bookService The book's services provider
-    * @param toastrService The toastr to show messages to the user
     */
     constructor(
-        private bookService: BookService,
-        private toastrService: ToastrService
+        private bookService: BookService
     ) { }
 
     /**
@@ -30,14 +27,12 @@ export class BookListComponent implements OnInit {
     books: Book[];
 
     /**
-    * Asks the service to update the list of books
+    * This method retrieves all the books in the Bookstore to show them in the list
     */
     getBooks(): void {
         this.bookService.getBooks()
             .subscribe(books => {
                 this.books = books;
-            }, err => {
-                this.toastrService.error(err, "Error");
             });
     }
 

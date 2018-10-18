@@ -1,8 +1,10 @@
+import { Book } from '../book/book';
+
 /**
 * This class represents an editorial of the BookStore. 
 * It contains all the information relevant to the editorial.
 */
-export interface Editorial {
+export class Editorial {
     /**
     * The editorial's id
     */
@@ -13,4 +15,8 @@ export interface Editorial {
     */
     name: string;
 
+    /**
+     * The editorial's books
+     */
+    books: Book[];
 }

@@ -1,8 +1,11 @@
+import { Author } from '../author/author';
+import { Editorial } from '../editorial/editorial';
+
 /**
 * This class represents a book of the BookStore. 
 * It contains all the information relevant to the book.
 */
-export interface Book {
+export class Book {
     /**
     * The book's id
     */
@@ -32,4 +35,14 @@ export interface Book {
      * The book's publishing date
      */
     publishingdate: string;
+    
+    /**
+    * The authors of the book
+    */
+    authors: Author[];
+
+    /**
+    * The editorial of the book
+    */
+    editorial: Editorial;
 }

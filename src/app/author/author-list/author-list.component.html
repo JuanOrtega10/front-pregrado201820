@@ -9,7 +9,9 @@
             </thead>
             <tbody>
                 <tr *ngFor = "let author of authors">
-                    <td><span>{{author.name}}</span></td>
+                    <td style="cursor: pointer;">
+                        <dd class="figure-caption" routerLink="/authors/{{author.id}}" >{{author.name}}</dd>
+                    </td>
                 </tr>
             </tbody>
         </table>
