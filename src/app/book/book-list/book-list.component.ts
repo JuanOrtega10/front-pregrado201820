@@ -22,7 +22,7 @@ export class BookListComponent implements OnInit {
     */
     constructor(private bookService: BookService,  private route: ActivatedRoute) {  }
     
-    allbooks:boolean = false;
+    allbooks:string = 'no';
     /**
     * This method retrieves all the books in the Bookstore to show them in the list
     */
