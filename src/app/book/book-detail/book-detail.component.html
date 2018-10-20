@@ -28,12 +28,23 @@
                         <dt class="bold">Description</dt>
                         <dd>{{bookDetail.description}}</dd>
                     </dl>
+                    <div *ngIf="bookDetail.reviews.length > 0">
+                        <p class="h4">Reviews of the book</p>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr *ngFor="let review of bookDetail.reviews">
+                                    <td><span id="book-reviewed"><b>{{review.book.name}}</b></span><span>: </span><span id="review-description">{{review.description}}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row border margin">
-         <p class="h3 p-3">Other books you may like</p>
+        <p class="h3 p-3">Other books you may like</p>
         <app-book-list [books]="other_books"></app-book-list>
     </div>
 </div>
