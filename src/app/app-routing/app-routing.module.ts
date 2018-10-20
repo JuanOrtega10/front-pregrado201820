@@ -22,7 +22,6 @@ const routes: Routes = [
             {
                 path: ':id',
                 component: BookDetailComponent,
-                runGuardsAndResolvers: 'always'
             }
         ]
     },
