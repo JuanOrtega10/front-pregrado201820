@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/filter';
+
 
 import { Book } from '../../book/book';
 import { BookService } from '../../book/book.service';
@@ -17,7 +20,9 @@ export class BookListComponent implements OnInit {
     /**
     * The component's constructor
     */
-    constructor(private bookService: BookService) {  }
+    constructor(private bookService: BookService,  private route: ActivatedRoute) {  }
+    
+    allbooks:boolean = false;
     /**
     * This method retrieves all the books in the Bookstore to show them in the list
     */
@@ -32,8 +37,19 @@ export class BookListComponent implements OnInit {
     * The method which initializes the component
     */
     ngOnInit() {
-     console.log(books);
-  
+     this.route.queryParams
+      .filter(params => params.allbooks)
+      .subscribe(params => {
+        console.log(params); // {order: "popular"}
+
+        this.allbooks = params.allbooks;
+        console.log(this.allbooks); // popular
+      });
+      if (this.allbooks == 'yes'){
+          console.log("allbooks");
+      
+       this.getBooks();
+       }
     }
     
 }

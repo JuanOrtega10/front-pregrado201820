@@ -2,7 +2,7 @@
 
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a id="booksTag" class="nav-link" routerLink="/books/list">Books</a>
+    <a id="booksTag" class="nav-link" [routerLink]="['/books/list']" [queryParams]="{allbooks: 'yes'}">Books</a>
   </li>
   <li class="nav-item">
     <a id="authorsTag" class="nav-link" routerLink="/authors/list">Authors</a>
