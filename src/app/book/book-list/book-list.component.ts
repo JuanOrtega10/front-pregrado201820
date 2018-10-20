@@ -1,31 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import { Book } from '../book';
-import { BookService } from '../book.service';
-
-/**
-* The component for the list of books in the BookStore
-*/
+import { Book } from '../../book/book';
+import { BookService } from '../../book/book.service';
 @Component({
-    selector: 'app-book',
+    selector: 'app-book-list',
     templateUrl: './book-list.component.html',
     styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent implements OnInit {
 
     /**
-    * Constructor of the component
-    * @param bookService The book's services provider
-    */
-    constructor(
-        private bookService: BookService
-    ) { }
-
-    /**
     * The list of books in the BookStore
     */
-    books: Book[];
+    @Input() books: Book[];
 
+    /**
+    * The component's constructor
+    */
+    constructor(private bookService: BookService) {  }
     /**
     * This method retrieves all the books in the Bookstore to show them in the list
     */
@@ -37,14 +29,11 @@ export class BookListComponent implements OnInit {
     }
 
     /**
-    * This will initialize the component by retrieving the list of books from the service
-    * This method will be called when the component is created
+    * The method which initializes the component
     */
     ngOnInit() {
-        this.getBooks();
+     console.log(books);
+  
     }
+    
 }
-
-
-
-

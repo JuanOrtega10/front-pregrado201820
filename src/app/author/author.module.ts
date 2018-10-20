@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { AuthorService } from './author.service';
 import { AuthorListComponent } from './author-list/author-list.component';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
-import { SharedModule } from '../shared/shared.module';
 import { AuthorDetailComponent } from './author-detail/author-detail.component';
+
+import { BookModule } from '../book/book.module';
 
 @NgModule({
     imports: [
@@ -17,7 +18,7 @@ import { AuthorDetailComponent } from './author-detail/author-detail.component';
         HttpClientModule,
         CommonModule,
         FormsModule,
-        SharedModule
+        BookModule
     ],
     declarations: [
         AuthorListComponent, AuthorDetailComponent

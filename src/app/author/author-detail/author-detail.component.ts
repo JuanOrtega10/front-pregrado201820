@@ -5,7 +5,7 @@ import { AuthorService } from '../author.service';
 
 import { AuthorDetail } from '../author-detail';
 import { Author } from '../author';
-//import { Book } from '../../book/book';
+
 
 @Component({
     selector: 'app-author-detail',
@@ -22,7 +22,7 @@ export class AuthorDetailComponent implements OnInit {
     */
     constructor(
         private route: ActivatedRoute,
-        private authorService: AuthorService
+        private authorService: AuthorService 
     ) { }
 
     /**
