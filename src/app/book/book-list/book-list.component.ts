@@ -13,7 +13,7 @@ import { BookService } from '../../book/book.service';
 export class BookListComponent implements OnInit {
 
     /**
-    * The list of books in the BookStore
+    * The list of books to display
     */
     @Input() books: Book[];
 
@@ -40,10 +40,10 @@ export class BookListComponent implements OnInit {
      this.route.queryParams
       .filter(params => params.allbooks)
       .subscribe(params => {
-        console.log(params); // {order: "popular"}
+        console.log(params); 
 
         this.allbooks = params.allbooks;
-        console.log(this.allbooks); // popular
+        console.log(this.allbooks); 
       });
       if (this.allbooks == 'yes'){
           console.log("allbooks");
