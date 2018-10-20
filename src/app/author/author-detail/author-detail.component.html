@@ -1,20 +1,23 @@
 <div class="panel-body">
     <div class="border margin">
-        <h1>{{author.name}}</h1> 
+        <p class="h3 p-3">{{authorDetail.name}}<p> 
         <div class="row">
             <div class="col-md-3">
                 <div class="thumb">
-                    <img class="img-fluid" src='{{author.image}}' alt="{{author.image}}" />   
+                    <img class="img-fluid" src='{{authorDetail.image}}' alt="{{authorDetail.image}}" />   
                 </div>
             </div>
             <div class="col-md-3">
                 <dl>     
                     <dt>Bio</dt>
-                    <dd>{{author.description}}</dd>
+                    <dd>{{authorDetail.description}}</dd>
+                    <dt>BirthDay</dt>
+                    <dd>{{authorDetail.birthDate| date:'MM/dd/yyyy'}}</dd>
                 </dl>
             </div>
+            
         </div>
     </div>
-    <h4>Books by this author : </h4>
-    <app-book-sidebar [books]="author_books"></app-book-sidebar>
+   <p class="h3 p-3">Books by this author : </p>
+    <app-book-sidebar [books]="authorDetail.books"></app-book-sidebar>
 </div>

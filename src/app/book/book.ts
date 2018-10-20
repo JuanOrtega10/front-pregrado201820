@@ -1,4 +1,3 @@
-import { Author } from '../author/author';
 import { Editorial } from '../editorial/editorial';
 
 /**
@@ -36,10 +35,6 @@ export class Book {
      */
     publishingdate: string;
     
-    /**
-    * The authors of the book
-    */
-    authors: Author[];
 
     /**
     * The editorial of the book

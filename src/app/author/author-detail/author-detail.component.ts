@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 import { AuthorService } from '../author.service';
 
+import { AuthorDetail } from '../author-detail';
 import { Author } from '../author';
-import { Book } from '../../book/book';
+//import { Book } from '../../book/book';
 
 @Component({
     selector: 'app-author-detail',
@@ -22,59 +22,36 @@ export class AuthorDetailComponent implements OnInit {
     */
     constructor(
         private route: ActivatedRoute,
-        private authorService: AuthorService,
-        private toastrService: ToastrService
+        private authorService: AuthorService
     ) { }
 
     /**
     * The author
     */
-    author: Author;
+    authorDetail: AuthorDetail;
 
     /**
-    * The author
-    */
-    author_books: Book[];
-
-    /**
-    * The author's id that we will pass to the book list component
-    * to show the author's books
+    * El id del author que viene en el path get .../authors/author_id
     */
     author_id: number;
-
     /**
     * The method which obtains the author whose details we want to show
     */
-    getAuthor(): void {
-        this.authorService.getAuthor(this.author_id)
-            .subscribe(author => {
-                this.author = author
-            }, err => {
-                this.toastrService.error(err, "Error");
+    getAuthorDetail(): void {
+        this.authorService.getAuthorDetail(this.author_id)
+            .subscribe(authorDetail => {
+                this.authorDetail = authorDetail
             });
     }
 
-    /**
-    * This method retrieves the books of the author
-    */
-    getBooksByAuthor(): void {
-        this.authorService.getBooksOfAuthor(this.author_id)
-            .subscribe(books => {
-                this.author_books = books
-            }, err => {
-                this.toastrService.error(err, "Error");
-            });
-    }
-
+   
     /**
     * The method which initializes the component.
     * We need to create the author so it is never considered as undefined
     */
     ngOnInit() {
         this.author_id = +this.route.snapshot.paramMap.get('id');
-        this.author = new Author();
-        this.getAuthor();
-        this.getBooksByAuthor();
+        this.authorDetail = new AuthorDetail();
+        this.getAuthorDetail();
     }
-
 }

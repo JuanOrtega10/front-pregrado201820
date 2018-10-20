@@ -1,5 +1,3 @@
-import { Book } from "../book/book";
-
 /**
  * This class represents an author of the BookStore. 
  * It contains all the information relevant to the author.
@@ -15,6 +13,10 @@ export class Author {
      */
     name: string;
 
+    /** Fecha de nacimiento del autor. Estamos utilizando de tipo  string. 
+     * 
+     */
+    birthDate: string;
     /**
      * The location of the author's profile picture
      */
@@ -25,8 +27,4 @@ export class Author {
      */
     description: string;
     
-    /**
-    * The list of books of the author
-    */
-    books: Book[];
 }
