@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AuthorListComponent} from '../author/author-list/author-list.component';
-import {BookListComponent} from '../book/book-list/book-list.component';
+import {BookSidebarComponent} from '../shared/book-sidebar/book-sidebar.component';
 import {EditorialListComponent} from '../editorial/editorial-list/editorial-list.component';
 import { AuthorDetailComponent } from '../author/author-detail/author-detail.component';
 import { BookDetailComponent } from '../book/book-detail/book-detail.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
         children: [
             {
                 path: 'list',
-                component: BookListComponent
+                component: BookSidebarComponent
             },
             {
                 path: ':id',
