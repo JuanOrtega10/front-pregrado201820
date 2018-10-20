@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 import { EditorialService } from '../editorial.service';
 import { Editorial } from '../editorial';
-import { Book } from '../../book/book';
+import { EditorialDetail } from '../editorial-detail';
 
 @Component({
     selector: 'app-editorial-detail',
@@ -21,19 +20,15 @@ export class EditorialDetailComponent implements OnInit {
     */
     constructor(
         private editorialService: EditorialService,
-        private route: ActivatedRoute,
-        private toastrService: ToastrService
+        private route: ActivatedRoute
     ) { }
 
     /**
     * The editorial whose details we want to show
     */
-    editorial: Editorial;
+    editorialDetail: EditorialDetail;
 
-    /**
-    * The books published by the editorial
-    */
-    editorial_books: Book[];
+
 
     /**
     * The editorial's id retrieved from the address
@@ -43,21 +38,11 @@ export class EditorialDetailComponent implements OnInit {
     /**
     * The method which retrieves the books of an editorial
     */
-    getBooks(): void {
-        this.editorialService.getEditorial(this.editorial_id)
-            .subscribe(editorial => {
-                this.editorial = editorial
-            }, err => {
-                this.toastrService.error(err, "Error");
+    getEditorialDetail(): void {
+        this.editorialService.getEditorialDetail(this.editorial_id)
+            .subscribe(editorialDetail => {
+                this.editorialDetail = editorialDetail
             });
-    }
-
-    /**
-    * This method retrieves the books of an editorial to show them in the list
-    */
-    getBooksByEditorial(): void {
-        this.editorialService.getBooksOfEditorial(this.editorial_id)
-            .subscribe(books => this.editorial_books = books);
     }
 
     /**
@@ -66,9 +51,8 @@ export class EditorialDetailComponent implements OnInit {
     */
     ngOnInit() {
         this.editorial_id = +this.route.snapshot.paramMap.get('id');
-        this.editorial = new Editorial();
-        this.getBooks();
-        this.getBooksByEditorial();
+        this.editorialDetail = new EditorialDetail();
+        this.getEditorialDetail();
     }
 
 }

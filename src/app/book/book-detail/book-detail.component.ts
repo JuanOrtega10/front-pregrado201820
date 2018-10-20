@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+
 
 import { BookService } from '../book.service';
 import { Book } from '../book';
+import { BookDetail } from '../book-detail';
 import { Editorial } from '../../editorial/editorial';
 
 @Component({
@@ -23,8 +24,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     constructor(
         private bookService: BookService,
         private route: ActivatedRoute,
-        private router: Router,
-        private toastrService: ToastrService
+        private router: Router
     ) {
         //This is added so we can refresh the view when one of the books in
         //the "Other books" list is clicked
@@ -36,14 +36,14 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-    * The book's id retrieved from the address
+    * The book's id retrieved from the path
     */
     book_id: number;
 
     /**
     * The book whose details are shown
     */
-    book: Book;
+    bookDetail: BookDetail;
 
     /**
     * The other books shown in the sidebar
@@ -60,25 +60,21 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     * The method which retrieves the details of the book that
     * we want to show
     */
-    getBook(): void {
-        this.bookService.getBook(this.book_id)
-            .subscribe(book => {
-                this.book = book;
-            }, err => {
-                this.toastrService.error(err, "Error");
+    getBookDetail(): void {
+         this.bookService.getBookDetail(this.book_id)
+            .subscribe(bookDetail => {
+                this.bookDetail = bookDetail;
             });
     }
 
     /**
     * This method retrieves all the books in the Bookstore to show them in the list
     */
-    getAllBooks(): void {
+    getOtherBooks(): void {
         this.bookService.getBooks()
             .subscribe(books => {
                 this.other_books = books;
                 this.other_books = this.other_books.filter(book => book.id !== this.book_id);
-            }, err => {
-                this.toastrService.error(err, "Error");
             });
     }
 
@@ -89,10 +85,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     */
     ngOnInit() {
         this.book_id = +this.route.snapshot.paramMap.get('id');
-        this.book = new Book();
-        this.book.editorial = new Editorial();
-        this.getBook();
-        this.getAllBooks();
+        this.bookDetail = new BookDetail();
+        this.getBookDetail();
+        this.getOtherBooks();
     }
 
     /**

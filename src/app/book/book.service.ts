@@ -3,12 +3,13 @@ import { Observable} from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Book } from './book';
-import { Author } from '../author/author';
+import { BookDetail } from './book-detail';
+
 
 import { environment } from '../../environments/environment';
 const API_URL = environment.apiURL;
 const books = '/books';
-const authors = '/authors';
+
 
 /**
 * The service provider for everything related to books
@@ -34,15 +35,8 @@ export class BookService {
     * Returns the Observable object with the details of an author retrieved from the API
     * @returns The author details
     */
-    getBook(bookId): Observable<Book> {
-        return this.http.get<Book>(API_URL + books + '/' + bookId);
+    getBookDetail(bookId): Observable<BookDetail> {
+        return this.http.get<BookDetail>(API_URL + books + '/' + bookId);
     }
     
-    /**
-    * Returns the Observable object with the details of an author retrieved from the API
-    * @returns The author details
-    */
-    getBookAuthors(bookId): Observable<Author[]> {
-        return this.http.get<Author[]>(API_URL + books + '/' + bookId + authors);
-    }
 }

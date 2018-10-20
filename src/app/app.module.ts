@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { EditorialModule } from './editorial/editorial.module';
-import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
     declarations: [
@@ -25,8 +25,7 @@ import { SharedModule } from './shared/shared.module';
         EditorialModule,
         FormsModule,
         BrowserAnimationsModule,
-        ToastrModule.forRoot(),
-        SharedModule
+        ToastrModule.forRoot()
     ],
 
     bootstrap: [AppComponent]

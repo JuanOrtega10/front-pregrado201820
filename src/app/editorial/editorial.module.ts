@@ -7,8 +7,9 @@ import { FormsModule } from '@angular/forms';
 import { EditorialListComponent } from './editorial-list/editorial-list.component';
 import { EditorialService } from './editorial.service';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
-import { SharedModule } from '../shared/shared.module';
 import { EditorialDetailComponent } from './editorial-detail/editorial-detail.component';
+
+import { BookModule } from '../book/book.module';
 
 @NgModule({
     imports: [
@@ -17,7 +18,7 @@ import { EditorialDetailComponent } from './editorial-detail/editorial-detail.co
         HttpClientModule,
         CommonModule,
         FormsModule,
-        SharedModule
+        BookModule
     ],
     declarations: [EditorialListComponent, EditorialDetailComponent],
     providers: [EditorialService]

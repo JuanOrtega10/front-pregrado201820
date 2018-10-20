@@ -3,12 +3,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { Editorial } from './editorial';
-import { Book } from '../book/book';
+import { EditorialDetail } from './editorial-detail';
 
 import { environment } from '../../environments/environment';
 const API_URL = environment.apiURL;
 const editorials = '/editorials';
-const books = '/books';
+
 
 /**
 * The service provider for everything related to editorials
@@ -34,15 +34,7 @@ export class EditorialService {
     * Returns the Observable object containing the editorial retrieved from the API
     * @returns The editorial
     */
-    getEditorial(editorialId): Observable<Editorial> {
-        return this.http.get<Editorial>(API_URL + editorials + '/' + editorialId);
-    }
-
-    /**
-    * Returns the Observable object with the books of an editorial retrieved from the API
-    * @returns The editorial's books
-    */
-    getBooksOfEditorial(editorialId): Observable<Book[]> {
-        return this.http.get<Book[]>(API_URL + editorials + '/' + editorialId + books);
+    getEditorialDetail(editorialId): Observable<EditorialDetail> {
+        return this.http.get<EditorialDetail>(API_URL + editorials + '/' + editorialId);
     }
 }

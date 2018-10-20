@@ -1,40 +1,40 @@
 <div class="panel panel-default"> 
     <div>
         <div class="border margin">
-            <h3>{{book.name}}</h3> 
+            <p class="h3 p-3">{{bookDetail.name}}</p> 
             <div class="row">
                 <div class="col-md-3">
                     <div class="thumb">
-                        <img class="img-fluid" src="{{book.image}}"/>
+                        <img class="img-fluid" src="{{bookDetail.image}}"/>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <dl>  
                         <hr>
                         <dt> Authors</dt>                      
-                        <div *ngFor = "let author of book.authors">
+                        <div *ngFor = "let author of bookDetail.authors">
                             <dd class="caption" routerLink="/authors/{{author.id}}">{{author.name}}</dd>
                         </div>
                         <hr>
                         <dt> ISBN</dt>
-                        <dd>{{book.isbn}}</dd>
+                        <dd>{{bookDetail.isbn}}</dd>
                         <hr>
                         <dt>Publishing Date</dt>
-                        <dd>{{book.publish_date| date:'yyyy-MM-dd'}}</dd>
+                        <dd>{{bookDetail.publish_date| date:'yyyy-MM-dd'}}</dd>
                         <hr>
                         <dt class="bold">Editorial</dt>
-                        <dd class="caption" routerLink="/editorials/{{book.editorial.id}}">{{book.editorial.name}}</dd>
+                        <dd class="caption" routerLink="/editorials/{{bookDetail.editorial.id}}">{{bookDetail.editorial.name}}</dd>
                         <hr>
                         <dt class="bold">Description</dt>
-                        <dd>{{book.description}}</dd>
+                        <dd>{{bookDetail.description}}</dd>
                     </dl>
                 </div>
             </div>
         </div>
     </div>
     <div class="row border margin">
-        <h4>Other books you may like</h4>
-        <app-book-sidebar [books]="other_books"></app-book-sidebar>
+         <p class="h3 p-3">Other books you may like</p>
+        <app-book-list [books]="other_books"></app-book-list>
     </div>
 </div>
 

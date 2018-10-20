@@ -1,4 +1,3 @@
-<div>{{err}}</div>
 <div class="container-fluid">
     <div class="col">
         <table class="table table-striped">
@@ -9,8 +8,8 @@
             </thead>
             <tbody>
                 <tr *ngFor = "let author of authors">
-                    <td style="cursor: pointer;">
-                        <dd class="figure-caption" routerLink="/authors/{{author.id}}" >{{author.name}}</dd>
+                    <td style="cursor: pointer;"> 
+                        <dd  routerLink="/authors/{{author.id}}" >{{author.name}}</dd>
                     </td>
                 </tr>
             </tbody>
