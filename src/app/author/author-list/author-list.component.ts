@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { AuthorService } from '../author.service';
 import { Author } from '../author';
+import { AuthorDetail } from '../author-detail';
 
 /**
 * The author's list component
@@ -26,8 +27,16 @@ export class AuthorListComponent implements OnInit {
     * The list of authors which belong to the BookStore
     */
     authors: Author[];
+    author_id: number;
+    selectedAuthor : Author;
+    
+    onSelected(author_id: number):void {
+        this.author_id = author_id;
+        this.selectedAuthor = new AuthorDetail();
+        this.getAuthorDetail();
 
-
+        
+    }
     /**
     * Asks the service to update the list of authors
     */
@@ -38,6 +47,12 @@ export class AuthorListComponent implements OnInit {
             });
     }
 
+      getAuthorDetail(): void {
+        this.authorService.getAuthorDetail(this.author_id)
+            .subscribe(selectedAuthor => {
+                this.selectedAuthor = selectedAuthor
+            });
+    }
     /**
     * This will initialize the component by retrieving the list of authors from the service
     * This method will be called when the component is created

@@ -15,9 +15,10 @@
                     <dd>{{authorDetail.birthDate| date:'MM/dd/yyyy'}}</dd>
                 </dl>
             </div>
-            
+
         </div>
     </div>
-   <p class="h3 p-3">Books by this author : </p>
+    <p class="h3 p-3">Books by this author : </p>
     <app-book-list [books]="authorDetail.books"></app-book-list>
 </div>
+
