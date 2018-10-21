@@ -36,6 +36,14 @@ const routes: Routes = [
             }
         ]
     }
+    {
+         path: 'home',
+         component: BookListComponent
+    },
+    {
+         path: '**',    
+         redirectTo: 'home',    
+    }
 ];
 
 @NgModule({
