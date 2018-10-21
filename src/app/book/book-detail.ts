@@ -1,5 +1,6 @@
 import { Author } from '../author/author';
 import { Book } from './book';
+import { Review } from './review';
 
 /**
 * This class represents a book of the BookStore. 
@@ -9,5 +10,5 @@ export class BookDetail extends Book {
    
     authors: Author[];
     
-    
+    reviews: Review[];
 }

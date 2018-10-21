@@ -3,12 +3,12 @@
         <div class="border margin">
             <p class="h3 p-3">{{bookDetail.name}}</p> 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col">
                     <div class="thumb">
                         <img class="img-fluid" src="{{bookDetail.image}}"/>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <dl>  
                         <hr>
                         <dt> Authors</dt>                      
@@ -29,15 +29,7 @@
                         <dd>{{bookDetail.description}}</dd>
                     </dl>
                     <div *ngIf="bookDetail.reviews.length > 0">
-                        <p class="h4">Reviews of the book</p>
-                        <table class="table table-striped">
-                            <tbody>
-                                <tr *ngFor="let review of bookDetail.reviews">
-                                    <td><span id="book-reviewed"><b>{{review.book.name}}</b></span><span>: </span><span id="review-description">{{review.description}}</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
+                        <app-book-reviews [bookReviews]="bookDetail.reviews"></app-book-reviews>
                     </div>
                 </div>
             </div>

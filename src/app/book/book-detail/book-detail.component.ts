@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { BookService } from '../book.service';
 import { Book } from '../book';
 import { BookDetail } from '../book-detail';
+import { Review } from '../review';
 import { Editorial } from '../../editorial/editorial';
 
 @Component({

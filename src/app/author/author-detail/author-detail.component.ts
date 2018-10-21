@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuthorService } from '../author.service';
@@ -15,6 +15,10 @@ import { Author } from '../author';
 export class AuthorDetailComponent implements OnInit {
 
     /**
+    * The author
+    */
+    @Input() authorDetail: AuthorDetail;
+    /**
     * Constructor for the component
     * @param route The route which helps to retrieves the id of the book to be shown
     * @param authorService The author's services provider
@@ -25,10 +29,8 @@ export class AuthorDetailComponent implements OnInit {
         private authorService: AuthorService 
     ) { }
 
-    /**
-    * The author
-    */
-    authorDetail: AuthorDetail;
+    
+    
 
     /**
     * El id del author que viene en el path get .../authors/author_id
@@ -50,8 +52,8 @@ export class AuthorDetailComponent implements OnInit {
     * We need to create the author so it is never considered as undefined
     */
     ngOnInit() {
+        console.log(this.author_id);
         this.author_id = +this.route.snapshot.paramMap.get('id');
-        this.authorDetail = new AuthorDetail();
         this.getAuthorDetail();
-    }
+            }
 }
