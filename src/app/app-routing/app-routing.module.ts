@@ -50,6 +50,14 @@ const routes: Routes = [
                 component: EditorialDetailComponent
             }
         ]
+    },
+    {
+         path: 'home',
+         component: BookListComponent
+    },
+    {
+         path: '**',    
+         redirectTo: 'home',    
     }
 ];
 
