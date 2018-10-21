@@ -6,6 +6,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookReviewComponent } from './book-reviews/book-review.component';
+
 import { BookDetailComponent } from './book-detail/book-detail.component';
 
 @NgModule({
@@ -14,10 +17,11 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
         AppRoutingModule,
         HttpClientModule,
         CommonModule,
-        FormsModule
+        FormsModule,
+        NgbModule
     ],
     declarations: [
-        BookListComponent, BookDetailComponent
+        BookListComponent, BookDetailComponent,  BookReviewComponent
     ],
     providers: [BookService],
     exports: [BookListComponent]
