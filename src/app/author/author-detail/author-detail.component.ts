@@ -54,5 +54,6 @@ export class AuthorDetailComponent implements OnInit {
     ngOnInit() {
         console.log(this.author_id);
         this.author_id = +this.route.snapshot.paramMap.get('id');
+        this.getAuthorDetail();
             }
 }
