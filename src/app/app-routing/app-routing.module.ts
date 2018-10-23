@@ -16,12 +16,14 @@ const routes: Routes = [
         children: [
             {
                 path: 'list',
-                component: BookListComponent
+                component: BookListComponent,
+                runGuardsAndResolvers: 'always'
                 
             },
             {
                 path: ':id',
                 component: BookDetailComponent,
+                runGuardsAndResolvers: 'always'
             }
         ]
     },
@@ -30,11 +32,13 @@ const routes: Routes = [
         children: [
             {
                 path: 'list',
-                component: AuthorListComponent
+                component: AuthorListComponent,
+                runGuardsAndResolvers: 'always'
             },
             {
                 path: ':id',
-                component: AuthorDetailComponent
+                component: AuthorDetailComponent,
+                runGuardsAndResolvers: 'always'
             }
         ]
     },
@@ -43,11 +47,13 @@ const routes: Routes = [
         children: [
             {
                 path: 'list',
-                component: EditorialListComponent
+                component: EditorialListComponent,
+                runGuardsAndResolvers: 'always'
             },
             {
                 path: ':id',
-                component: EditorialDetailComponent
+                component: EditorialDetailComponent,
+                runGuardsAndResolvers: 'always'
             }
         ]
     },

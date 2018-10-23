@@ -25,7 +25,6 @@ import {BookModule} from '../book/book.module';
     declarations: [
         AuthorListComponent, AuthorDetailComponent, AuthorCreateComponent
     ],
-    providers: [AuthorService],
-    bootstrap: [AuthorListComponent]
+    providers: [AuthorService]
 })
 export class AuthorModule {}

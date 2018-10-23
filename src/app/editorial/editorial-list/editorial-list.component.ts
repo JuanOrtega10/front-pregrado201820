@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Editorial } from '../editorial';
-import { EditorialService } from '../editorial.service';
+import {Editorial} from '../editorial';
+import {EditorialService} from '../editorial.service';
 
 /**
 * The component for the list of editorials in the BookStore
@@ -19,12 +19,17 @@ export class EditorialListComponent implements OnInit {
     */
     constructor(
         private editorialService: EditorialService,
-    ) { }
+    ) {}
 
     /**
     * The list of editorials which belong to the BookStore
     */
     editorials: Editorial[];
+
+    /**
+    * Shows or hides the create component
+    */
+    showCreate: boolean;
 
     /**
     * Asks the service to update the list of editorials
@@ -37,10 +42,18 @@ export class EditorialListComponent implements OnInit {
     }
 
     /**
+    * Shows or hides the create component
+    */
+    showHideCreate(): void {
+        this.showCreate = !this.showCreate!
+    }
+
+    /**
     * This will initialize the component by retrieving the list of editorials from the service
     * This method will be called when the component is created
     */
     ngOnInit() {
+        this.showCreate = false;
         this.getEditorials();
     }
 }

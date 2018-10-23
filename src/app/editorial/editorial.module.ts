@@ -8,6 +8,7 @@ import { EditorialListComponent } from './editorial-list/editorial-list.componen
 import { EditorialService } from './editorial.service';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
 import { EditorialDetailComponent } from './editorial-detail/editorial-detail.component';
+import { EditorialCreateComponent } from './editorial-create/editorial-create.component';
 
 import { BookModule } from '../book/book.module';
 
@@ -20,7 +21,7 @@ import { BookModule } from '../book/book.module';
         FormsModule,
         BookModule
     ],
-    declarations: [EditorialListComponent, EditorialDetailComponent],
+    declarations: [EditorialListComponent, EditorialDetailComponent,EditorialCreateComponent],
     providers: [EditorialService]
 })
 export class EditorialModule { }
