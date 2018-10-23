@@ -4,7 +4,6 @@ import {APP_BASE_HREF} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppModule} from '../../app.module';
-
 import {AuthorListComponent} from './author-list.component';
 import {Author} from '../author';
 import {AuthorService} from '../author.service';

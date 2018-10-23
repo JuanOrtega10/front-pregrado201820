@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ModalDialogService, SimpleModalComponent } from 'ngx-modal-dialog';
 import { ToastrService } from 'ngx-toastr';
 
 import { AuthorService } from '../author.service';
@@ -27,16 +28,44 @@ export class AuthorListComponent implements OnInit {
     * The list of authors which belong to the BookStore
     */
     authors: Author[];
+
+    /**
+    * Shows or hides the author-create-component
+    */
+    showCreate: boolean;
+    
+    /**
+    * The id of the author that the user wants to view
+    */
     author_id: number;
+    
+    /**
+     * the author that the user views.
+     */
     selectedAuthor : Author;
     
+    
+    /**
+    * Shows the author
+    */
     onSelected(author_id: number):void {
+        this.showCreate = false;
         this.author_id = author_id;
         this.selectedAuthor = new AuthorDetail();
         this.getAuthorDetail();
-
-        
     }
+    
+    /**
+    * Shows or hides the create component
+    */
+    showHideCreate(): void {
+        if (this.selectedAuthor) {
+            this.selectedAuthor = undefined;
+            this.author_id = undefined;
+        }
+        this.showCreate = !this.showCreate;
+    }
+    
     /**
     * Asks the service to update the list of authors
     */
@@ -47,7 +76,7 @@ export class AuthorListComponent implements OnInit {
             });
     }
 
-      getAuthorDetail(): void {
+    getAuthorDetail(): void {
         this.authorService.getAuthorDetail(this.author_id)
             .subscribe(selectedAuthor => {
                 this.selectedAuthor = selectedAuthor
@@ -58,7 +87,9 @@ export class AuthorListComponent implements OnInit {
     * This method will be called when the component is created
     */
     ngOnInit() {
+        this.showCreate = false;
+        this.selectedAuthor = undefined;
+        this.author_id = undefined;
         this.getAuthors();
     }
-
 }
