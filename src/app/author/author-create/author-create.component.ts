@@ -44,14 +44,10 @@ export class AuthorCreateComponent implements OnInit {
     * Creates an author
     */
     createAuthor(): void {
-        var date = new Date();
-        date.setDate(this.author.birthDate.day);
-        date.setMonth(this.author.birthDate.month);
-        date.setFullYear(this.author.birthDate.year);
         var author_create = {
             name: this.author.name,
             description: this.author.description,
-            birthDate: date,
+            birthDate: this.author.birthDate,
             image: this.author.image
         };
         this.authorService.createAuthor(author_create)
