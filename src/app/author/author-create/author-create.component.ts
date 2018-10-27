@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthorService } from '../author.service';
 import { Author } from '../author';
 
+type DateString = {month: number,day: number,year: number};
 @Component({
     selector: 'app-author-create',
     templateUrl: './author-create.component.html',
@@ -45,7 +46,8 @@ export class AuthorCreateComponent implements OnInit {
     * Creates an author
     */
     createAuthor(): Author {
-        let dateB : Date = new Date(this.author.birthDate.year, this.author.birthDate.month, this.author.birthDate.day);
+        console.log(this.author)
+        let dateB: Date = new Date((<DateString>this.author.birthDate).year, (<DateString>this.author.birthDate).month, (<DateString>this.author.birthDate).day);
         this.author.birthDate = this.dp.transform(dateB, 'yyyy-MM-dd');
         this.authorService.createAuthor(this.author)
             .subscribe((author) => {

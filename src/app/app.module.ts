@@ -32,7 +32,7 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
         NgxPaginationModule,
         NgbModule,
         ModalDialogModule,
-        AngularFontAwesomeModule
+        AngularFontAwesomeModule,
     ],
     bootstrap: [AppComponent],
     providers: [

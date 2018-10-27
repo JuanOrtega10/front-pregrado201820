@@ -91,7 +91,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         this.reviewListComponent.getReviews();
     }
 
-    /**
+    /** 
     * The method which initilizes the component
     * We need to initialize the book and its editorial so that
     * they are never considered undefined

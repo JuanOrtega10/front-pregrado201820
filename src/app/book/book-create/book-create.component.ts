@@ -6,7 +6,7 @@ import {ToastrService} from 'ngx-toastr';
 import {BookService} from '../book.service';
 import {AuthorService} from '../../author/author.service';
 import {EditorialService} from '../../editorial/editorial.service';
-
+type DateString = {month: number,day: number,year: number};
 import {Book} from '../book';
 import {Author} from '../../author/author';
 import {Editorial} from '../../editorial/editorial';
@@ -118,7 +118,7 @@ export class BookCreateComponent implements OnInit {
         if (this.bookAuthors.length == 0) {
             this.toastrService.error('The book must have at least one author!', 'Error');
         } else {
-            let dateB: Date = new Date(this.book.publishingdate.year, this.book.publishingdate.month, this.book.publishingdate.day);
+            let dateB: Date = new Date((<DateString>this.book.publishingdate).year, (<DateString>this.book.publishingdate).month, (<DateString>this.book.publishingdate).day);
             this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
             this.bookService.createBook(this.book)
                 .subscribe(book => {
