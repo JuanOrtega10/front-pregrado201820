@@ -44,11 +44,11 @@ export class BookAddReviewComponent implements OnInit, OnChanges {
     */
     postReview(reviewForm: NgForm): Review {
         this.review.book = this.book;
-        this.bookService.createReview(this.review)
+        this.bookService.createReview(this.book.id,this.review)
             .subscribe(() => {
                 reviewForm.resetForm();
                 this.updateReviews.emit();
-                this.toastrService.success("The review was successfully posted", 'Review added');
+                this.toastrService.success("The review was successfully created", 'Review added');
             }, err => {
                 this.toastrService.error(err, 'Error');
             });

@@ -66,8 +66,8 @@ export class BookService {
     * @param review The review
     * @returns True if the review was posted, false otherwise
     */
-    createReview(review): Observable<Review> {
-        return this.http.post<Review>(API_URL + books + reviews, review);
+    createReview(bookId,review): Observable<Review> {
+        return this.http.post<Review>(API_URL + books + '/' + bookId + reviews, review);
     }
     /**
     * Retrieves the reviews of a book given its id

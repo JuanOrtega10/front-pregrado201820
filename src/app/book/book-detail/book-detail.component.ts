@@ -1,7 +1,7 @@
-import {Component, OnInit, OnDestroy, ViewContainerRef, ViewChild } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewContainerRef, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 
-import { BookReviewsListComponent } from '../book-reviews-list/book-reviews-list.component';
+import {BookReviewsListComponent} from '../book-reviews-list/book-reviews-list.component';
 import {BookService} from '../book.service';
 import {Book} from '../book';
 import {BookDetail} from '../book-detail';
@@ -57,9 +57,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     */
     navigationSubscription;
 
-     /**
-     * The child BookReviewListComponent
-     */
+    /**
+    * The child BookReviewListComponent
+    */
     @ViewChild(BookReviewsListComponent) reviewListComponent: BookReviewsListComponent;
 
     /**
@@ -98,9 +98,11 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     */
     ngOnInit() {
         this.book_id = +this.route.snapshot.paramMap.get('id');
-        this.bookDetail = new BookDetail();
-        this.getBookDetail();
-        this.getOtherBooks();
+        if (this.book_id) {
+            this.bookDetail = new BookDetail();
+            this.getBookDetail();
+            this.getOtherBooks();
+        }
     }
 
     /**

@@ -9,10 +9,10 @@
                     </div>
                 </div>
                 <div class="col">
-                    <dl>  
+                    <dl *ngIf="bookDetail!=undefined">  
                         <hr>
                         <dt> Authors</dt>                      
-                        <div *ngFor = "let author of bookDetail.authors">
+                        <div  *ngFor = "let author of bookDetail.authors">
                             <dd class="caption" routerLink="/authors/{{author.id}}">{{author.name}}</dd>
                         </div>
                         <hr>

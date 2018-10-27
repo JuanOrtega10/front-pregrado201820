@@ -11,7 +11,7 @@
             <table class="table table-striped">
                 <tbody>
                     <tr *ngFor="let review of reviews | paginate: { itemsPerPage: 3, currentPage: page }">
-                        <td><span id="book-reviewed"><b>{{review.book.name}}</b></span><span>: </span><span id="review-description">{{review.description}}</span></td>
+                        <td><span id="book-reviewed"><b>{{review.name}}</b></span><span>: </span><span id="review-description">{{review.description}}</span><br><span id="book-reviewed"><i>{{review.source}}</i></span></td>
                     </tr>
                 </tbody>
             </table>
