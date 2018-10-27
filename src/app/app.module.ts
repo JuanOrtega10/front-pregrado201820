@@ -27,7 +27,11 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
         BookModule,
         EditorialModule,
         FormsModule,
-        ToastrModule.forRoot(),
+        ToastrModule.forRoot({
+            timeOut: 10000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+        }),
         BrowserAnimationsModule
     ],
     bootstrap: [AppComponent],
