@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 
-import { ToastrService } from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 
-import { EditorialService } from '../editorial.service';
+import {EditorialService} from '../editorial.service';
 
-import { Editorial } from '../editorial';
+import {Editorial} from '../editorial';
 
 @Component({
     selector: 'app-editorial-create',
@@ -21,7 +21,7 @@ export class EditorialCreateComponent implements OnInit {
     constructor(
         private editorialService: EditorialService,
         private toastrService: ToastrService
-    ) { }
+    ) {}
 
     /**
     * The new editorial
@@ -43,14 +43,16 @@ export class EditorialCreateComponent implements OnInit {
     /**
     * Creates a new editorial
     */
-    createEditorial(): void {
+    createEditorial(): Editorial {
         this.editorialService.createEditorial(this.editorial)
-            .subscribe(() => {
+            .subscribe((editorial) => {
+                this.editorial = editorial;
                 this.create.emit();
                 this.toastrService.success("The editorial was created", "Editorial creation");
             }, err => {
                 this.toastrService.error(err, "Error");
             });
+        return this.editorial;
     }
 
     /**

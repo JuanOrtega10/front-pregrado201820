@@ -25,19 +25,21 @@
                         <dt class="bold">Editorial</dt>
                         <dd class="caption" routerLink="/editorials/{{bookDetail.editorial.id}}">{{bookDetail.editorial.name}}</dd>
                         <hr>
+                        <hr>
                         <dt class="bold">Description</dt>
                         <dd>{{bookDetail.description}}</dd>
+                        <hr>
+                         <app-book-reviews [book]="bookDetail"></app-book-reviews>
                     </dl>
-                    <div *ngIf="bookDetail.reviews.length > 0">
-                        <app-book-reviews [bookReviews]="bookDetail.reviews"></app-book-reviews>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <app-book-add-review [book]="bookDetail" (updateReviews)="updateReviews()"></app-book-add-review>
     <div class="row border margin">
         <p class="h3 p-3">Other books you may like</p>
         <app-book-list [books]="other_books"></app-book-list>
     </div>
+
 </div>
 

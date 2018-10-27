@@ -12,7 +12,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="navbar-nav mr-auto mt-0">
-                <a id="bookss-navbar-item" class="nav-item nav-link"  [routerLink]="['/books/list']" [queryParams]="{allbooks: 'yes'}">Books</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">Books</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" class="nav-item nav-link"  [routerLink]="['/books/list']" [queryParams]="{allbooks: 'yes'}">Books</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"class="nav-item nav-link" routerLink="/books/add">Add new book</a>
+                    </div>
+                </li>
                 <a id="authors-navbar-item" class="nav-item nav-link" routerLink="/authors/list">Authors</a>
                 <a id="editorials-navbar-item" class="nav-item nav-link" routerLink="/editorials/list">Editorials</a>
             </div>

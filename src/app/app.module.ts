@@ -28,7 +28,11 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
         EditorialModule,
         FormsModule,
         ToastrModule.forRoot(),
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        NgxPaginationModule,
+        NgbModule,
+        ModalDialogModule,
+        AngularFontAwesomeModule
     ],
     bootstrap: [AppComponent],
     providers: [

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { Author } from './author';
 import { AuthorDetail } from './author-detail';
-
-
 import { environment } from '../../environments/environment';
+
 const API_URL = environment.apiURL;
 const authors = '/authors';
 
@@ -46,8 +44,7 @@ export class AuthorService {
     * @returns The confirmation that the author was created
     */
     createAuthor(author): Observable<Author> {
-        return this.http.post<Author>(API_URL + authors, author).pipe(
-    tap((author: Author) => console.log(`added author w/ id=${author.id}`)));
+        return this.http.post<Author>(API_URL + authors, author);
     }
     
 }

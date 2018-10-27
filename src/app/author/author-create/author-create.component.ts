@@ -1,10 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
-
 import { ToastrService } from 'ngx-toastr';
 
 import { AuthorService } from '../author.service';
-
 import { Author } from '../author';
 
 @Component({
@@ -47,12 +45,8 @@ export class AuthorCreateComponent implements OnInit {
     * Creates an author
     */
     createAuthor(): Author {
-        console.log(this.author);
-        
         let dateB : Date = new Date(this.author.birthDate.year, this.author.birthDate.month, this.author.birthDate.day);
-      //  console.log(this.dp.transform(dateB, 'yyyy-MM-dd'))
         this.author.birthDate = this.dp.transform(dateB, 'yyyy-MM-dd');
-         console.log(this.author)
         this.authorService.createAuthor(this.author)
             .subscribe((author) => {
                 this.author = author;
