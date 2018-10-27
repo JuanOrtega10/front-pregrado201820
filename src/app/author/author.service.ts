@@ -46,8 +46,7 @@ export class AuthorService {
     * @returns The confirmation that the author was created
     */
     createAuthor(author): Observable<Author> {
-        return this.http.post<Author>(API_URL + authors, author).pipe(
-    tap((author: Author) => console.log(`added author w/ id=${author.id}`)));
+        return this.http.post<Author>(API_URL + authors, author);
     }
     
 }
