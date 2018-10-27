@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { Author } from './author';
@@ -44,8 +45,9 @@ export class AuthorService {
     * @param author The new author
     * @returns The confirmation that the author was created
     */
-    createAuthor(author): Observable<boolean> {
-        return this.http.post<boolean>(API_URL + authors, author);
+    createAuthor(author): Observable<Author> {
+        return this.http.post<Author>(API_URL + authors, author).pipe(
+    tap((author: Author) => console.log(`added author w/ id=${author.id}`)));
     }
     
 }
