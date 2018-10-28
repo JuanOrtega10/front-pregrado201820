@@ -31,5 +31,5 @@ export interface Book {
     /**
      * The book's publishing date
      */
-    publishingdate: string;
+    publishingdate: any;
 }

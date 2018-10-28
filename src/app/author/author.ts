@@ -22,4 +22,9 @@ export interface Author {
      * A brief description of the author's life
      */
     description: string;
+    
+     /**
+     * The author's birthDate 
+     */
+    birthDate: any;
 }
