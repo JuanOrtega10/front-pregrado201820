@@ -1,9 +1,7 @@
 import { Editorial } from '../editorial/editorial';
+type DateString = {month: number,day: number,year: number};
 
-/**
-* This class represents a book of the BookStore. 
-* It contains all the information relevant to the book.
-*/
+
 export class Book {
     /**
     * The book's id
@@ -33,7 +31,7 @@ export class Book {
     /**
      * The book's publishing date
      */
-    publishingdate: string;
+    publishingdate: DateString|string;
     
 
     /**

@@ -43,7 +43,7 @@ export class EditorialService {
     * @param editorial The editorial which will be created
     * @returns The confirmation of the editorial's creation
     */
-    createEditorial(editorial): Observable<boolean> {
-        return this.http.post<boolean>(API_URL + editorials, editorial);
+    createEditorial(editorial): Observable<EditorialDetail> {
+        return this.http.post<EditorialDetail>(API_URL + editorials, editorial);
     }
 }
