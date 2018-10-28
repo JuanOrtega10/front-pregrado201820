@@ -1,4 +1,4 @@
-type DateString = {month: number,day: number,year: number};
+
 export class Author {
     /**
     * The author's id
@@ -13,7 +13,7 @@ export class Author {
     /** Fecha de nacimiento del autor. Estamos utilizando de tipo  string. 
      * 
      */
-    birthDate: DateString|string;
+    birthDate: any;
     /**
      * The location of the author's profile picture
      */
