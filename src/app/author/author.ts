@@ -16,7 +16,7 @@ export class Author {
     /** Fecha de nacimiento del autor. Estamos utilizando de tipo  string. 
      * 
      */
-    birthDate: string;
+    birthDate: any;
     /**
      * The location of the author's profile picture
      */
