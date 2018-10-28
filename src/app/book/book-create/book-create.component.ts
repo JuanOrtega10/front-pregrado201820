@@ -77,8 +77,6 @@ export class BookCreateComponent implements OnInit {
         this.authorService.getAuthors()
             .subscribe(authors => {
                 this.authors = authors;
-            }, err => {
-                this.toastrService.error(err, 'Error');
             });
     }
 
@@ -118,7 +116,7 @@ export class BookCreateComponent implements OnInit {
         if (this.bookAuthors.length == 0) {
             this.toastrService.error('The book must have at least one author!', 'Error');
         } else {
-            let dateB: Date = new Date((<DateString>this.book.publishingdate).year, (<DateString>this.book.publishingdate).month, (<DateString>this.book.publishingdate).day);
+            let dateB: Date = new Date(this.book.publishingdate.year, this.book.publishingdate.month-1, this.book.publishingdate.day);
             this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
             this.bookService.createBook(this.book)
                 .subscribe(book => {
