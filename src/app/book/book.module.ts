@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookReviewComponent } from './book-reviews/book-review.component';
-
+import { BookCreateComponent } from './book-create/book-create.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
         NgbModule
     ],
     declarations: [
-        BookListComponent, BookDetailComponent,  BookReviewComponent
+        BookListComponent, BookDetailComponent,  BookReviewComponent,BookCreateComponent
     ],
     providers: [BookService],
     exports: [BookListComponent]

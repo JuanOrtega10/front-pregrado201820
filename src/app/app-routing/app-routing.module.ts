@@ -8,17 +8,21 @@ import {EditorialListComponent} from '../editorial/editorial-list/editorial-list
 import { AuthorDetailComponent } from '../author/author-detail/author-detail.component';
 import { BookDetailComponent } from '../book/book-detail/book-detail.component';
 import { EditorialDetailComponent } from '../editorial/editorial-detail/editorial-detail.component';
+import { BookCreateComponent } from '../book/book-create/book-create.component';
 
 const routes: Routes = [
 
     {
         path: 'books',
         children: [
-            {
+           {
                 path: 'list',
-                component: BookListComponent,
+                component: BookListComponent 
+            },
+            {
+                path: 'add',
+                component: BookCreateComponent,
                 runGuardsAndResolvers: 'always'
-                
             },
             {
                 path: ':id',

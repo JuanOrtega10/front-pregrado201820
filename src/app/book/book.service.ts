@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
-import { Book } from './book';
-import { BookDetail } from './book-detail';
+import {Book} from './book';
+import {BookDetail} from './book-detail';
 
 
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 const API_URL = environment.apiURL;
 const books = '/books';
 
@@ -16,13 +16,13 @@ const books = '/books';
 */
 @Injectable()
 export class BookService {
-    
+
     /**
     * Constructor of the service
     * @param http The HttpClient - This is necessary in order to perform requests
     */
-    constructor(private http: HttpClient) { }
-    
+    constructor(private http: HttpClient) {}
+
     /**
     * Returns the Observable object containing the list of books retrieved from the API
     * @returns The list of books in real time
@@ -30,7 +30,16 @@ export class BookService {
     getBooks(): Observable<Book[]> {
         return this.http.get<Book[]>(API_URL + books);
     }
-    
+
+    /**
+    * Creates a new book
+    * @param book The new book
+    * @returns The book with its new id if it was created, false if it wasn't
+    */
+    createBook(book): Observable<BookDetail> {
+        return this.http.post<BookDetail>(API_URL + books, book);
+    }
+
     /**
     * Returns the Observable object with the details of an author retrieved from the API
     * @returns The author details
@@ -38,5 +47,5 @@ export class BookService {
     getBookDetail(bookId): Observable<BookDetail> {
         return this.http.get<BookDetail>(API_URL + books + '/' + bookId);
     }
-    
+
 }
