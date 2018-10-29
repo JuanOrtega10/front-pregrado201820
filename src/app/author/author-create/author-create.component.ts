@@ -48,7 +48,7 @@ export class AuthorCreateComponent implements OnInit {
     */
     createAuthor(): Author {
         console.log(this.author);
-        let dateB: Date = new Date((<DateString>this.author.birthDate).year, (<DateString>this.author.birthDate).month, (<DateString>this.author.birthDate).day);
+        let dateB: Date = new Date(this.author.birthDate.year, this.author.birthDate.month-1, this.author.birthDate.day);
         this.author.birthDate = this.dp.transform(dateB, 'yyyy-MM-dd');
         console.log(this.author)
         this.authorService.createAuthor(this.author)
