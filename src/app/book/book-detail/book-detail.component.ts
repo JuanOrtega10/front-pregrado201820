@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 
 
-import { BookService } from '../book.service';
-import { Book } from '../book';
-import { BookDetail } from '../book-detail';
-import { Review } from '../review';
-import { Editorial } from '../../editorial/editorial';
+import {BookService} from '../book.service';
+import {Book} from '../book';
+import {BookDetail} from '../book-detail';
+import {BookReviewComponent} from '../book-reviews/book-review.component';
+import {BookAddReviewComponent} from '../book-add-review/book-add-review.component';
 
 @Component({
     selector: 'app-book-detail',
@@ -58,11 +58,36 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     navigationSubscription;
 
     /**
+     * The child BookReviewListComponent
+     */
+    @ViewChild(BookReviewComponent) reviewListComponent: BookReviewComponent;
+
+    /**
+     * The child BookReviewListComponent
+     */
+    @ViewChild(BookAddReviewComponent) reviewAddComponent: BookAddReviewComponent;
+
+    toggleReviews(): void {
+        if (this.reviewAddComponent.isCollapsed == false) {
+            this.reviewAddComponent.isCollapsed = true;
+        }
+        this.reviewListComponent.isCollapsed = !this.reviewListComponent.isCollapsed;
+    }
+
+    toggleCreateReview(): void {
+        if (this.reviewListComponent.isCollapsed == false) {
+            this.reviewListComponent.isCollapsed = true;
+        }
+        this.reviewAddComponent.isCollapsed = !this.reviewAddComponent.isCollapsed;
+    }
+
+
+    /**
     * The method which retrieves the details of the book that
     * we want to show
     */
     getBookDetail(): void {
-         this.bookService.getBookDetail(this.book_id)
+        this.bookService.getBookDetail(this.book_id)
             .subscribe(bookDetail => {
                 this.bookDetail = bookDetail;
             });
@@ -77,6 +102,16 @@ export class BookDetailComponent implements OnInit, OnDestroy {
                 this.other_books = books;
                 this.other_books = this.other_books.filter(book => book.id !== this.book_id);
             });
+    }
+
+    /**
+     * The function called when a review is posted, so that the child component can refresh the list
+     */
+    updateReviews(): void {
+        this.getBookDetail();
+        this.reviewListComponent.updateReviews(this.bookDetail.reviews);
+        this.reviewListComponent.isCollapsed = false;
+        this.reviewAddComponent.isCollapsed = true;
     }
 
     /**

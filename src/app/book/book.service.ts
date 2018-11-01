@@ -4,11 +4,13 @@ import {HttpClient} from '@angular/common/http';
 
 import {Book} from './book';
 import {BookDetail} from './book-detail';
+import {Review} from './review';
 
 
 import {environment} from '../../environments/environment';
 const API_URL = environment.apiURL;
 const books = '/books';
+const reviews = '/reviews';
 
 
 /**
@@ -46,6 +48,15 @@ export class BookService {
     */
     getBookDetail(bookId): Observable<BookDetail> {
         return this.http.get<BookDetail>(API_URL + books + '/' + bookId);
+    }
+
+    /**
+    * Creates a review
+    * @param review The review
+    * @returns True if the review was posted, false otherwise
+    */
+    createReview(bookId, review): Observable<Review> {
+        return this.http.post<Review>(API_URL + books + '/' + bookId + reviews, review);
     }
 
 }
