@@ -32,6 +32,16 @@ export class EditorialListComponent implements OnInit {
     showCreate: boolean;
 
     /**
+     * Shows or hides the edit component.
+     */
+    showEdit: boolean;
+
+    /**
+     * The id of the editorial being edited.
+     */
+    editorial_edit_id: number;
+
+    /**
     * Asks the service to update the list of editorials
     */
     getEditorials(): void {
@@ -45,7 +55,26 @@ export class EditorialListComponent implements OnInit {
     * Shows or hides the create component
     */
     showHideCreate(): void {
+        this.showEdit = false;
         this.showCreate = !this.showCreate!
+    }
+
+    /**
+    * Shows or hides the create component
+    */
+    showHideEdit(editorial_id: number): void {
+        if (!this.showEdit || (this.showEdit && editorial_id != this.editorial_edit_id)) {
+            this.showCreate = false;
+            this.showEdit = true;
+            this.editorial_edit_id = editorial_id;
+        }
+        else {
+            this.showEdit = false;
+        }
+    }
+
+    updateEditorial(): void {
+        this.showEdit = false;
     }
 
     /**
@@ -54,6 +83,7 @@ export class EditorialListComponent implements OnInit {
     */
     ngOnInit() {
         this.showCreate = false;
+        this.showEdit = false;
         this.getEditorials();
     }
 }

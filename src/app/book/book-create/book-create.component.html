@@ -17,7 +17,7 @@
                     <label for="bookPublishDate"><b>Publication date</b></label>
                     <div [ngClass]="{ 'is-invalid': f.submitted && bookPublishDate.invalid }">
                         <input class="form-control" id="bookPublishDate" name="bookPublishDate" [(ngModel)]="book.publishingdate"
-                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" #bookPublishDate="ngModel" [ngClass]="{'is-invalid': f.submitted && (bookPublishDate.untouched || bookPublishDate.invalid) }"
+                            ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" #bookPublishDate="ngModel" [ngClass]="{'is-invalid': (bookPublishDate.untouched || bookPublishDate.invalid) }"
                             required>
                         <div class="invalid-feedback">
                             <div>The book's publication date is missing</div>
@@ -60,8 +60,6 @@
                         <div>The book's editorial is missing</div>
                     </div>
                 </div>
-                <app-book-authors-list-swap [titleLeft]="titleLeft" [titleRight]="titleRight" [left]="bookAuthors" [right]="authors"
-                    (updateLeft)="selectBookAuthors($event)"></app-book-authors-list-swap>
                 <br>
                 <div class="row form-inline justify-content-center align-self-center">
                     <button type="submit" class="btn btn-primary">Create</button>

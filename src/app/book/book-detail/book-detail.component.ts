@@ -1,12 +1,12 @@
-import {Component, OnInit, OnDestroy, ViewContainerRef, ViewChild} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 
-import {BookReviewsListComponent} from '../book-reviews-list/book-reviews-list.component';
+
 import {BookService} from '../book.service';
 import {Book} from '../book';
 import {BookDetail} from '../book-detail';
-import {Review} from '../review';
-import {Editorial} from '../../editorial/editorial';
+import {BookReviewComponent} from '../book-reviews/book-review.component';
+import {BookAddReviewComponent} from '../book-add-review/book-add-review.component';
 
 @Component({
     selector: 'app-book-detail',
@@ -58,9 +58,29 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     navigationSubscription;
 
     /**
-    * The child BookReviewListComponent
-    */
-    @ViewChild(BookReviewsListComponent) reviewListComponent: BookReviewsListComponent;
+     * The child BookReviewListComponent
+     */
+    @ViewChild(BookReviewComponent) reviewListComponent: BookReviewComponent;
+
+    /**
+     * The child BookReviewListComponent
+     */
+    @ViewChild(BookAddReviewComponent) reviewAddComponent: BookAddReviewComponent;
+
+    toggleReviews(): void {
+        if (this.reviewAddComponent.isCollapsed == false) {
+            this.reviewAddComponent.isCollapsed = true;
+        }
+        this.reviewListComponent.isCollapsed = !this.reviewListComponent.isCollapsed;
+    }
+
+    toggleCreateReview(): void {
+        if (this.reviewListComponent.isCollapsed == false) {
+            this.reviewListComponent.isCollapsed = true;
+        }
+        this.reviewAddComponent.isCollapsed = !this.reviewAddComponent.isCollapsed;
+    }
+
 
     /**
     * The method which retrieves the details of the book that
@@ -85,24 +105,25 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-        * The function called when a review is posted, so that the child component can refresh the list
-        */
-    updateReviews() {
-        this.reviewListComponent.getReviews();
+     * The function called when a review is posted, so that the child component can refresh the list
+     */
+    updateReviews(): void {
+        this.getBookDetail();
+        this.reviewListComponent.updateReviews(this.bookDetail.reviews);
+        this.reviewListComponent.isCollapsed = false;
+        this.reviewAddComponent.isCollapsed = true;
     }
 
-    /** 
+    /**
     * The method which initilizes the component
     * We need to initialize the book and its editorial so that
     * they are never considered undefined
     */
     ngOnInit() {
         this.book_id = +this.route.snapshot.paramMap.get('id');
-        if (this.book_id) {
-            this.bookDetail = new BookDetail();
-            this.getBookDetail();
-            this.getOtherBooks();
-        }
+        this.bookDetail = new BookDetail();
+        this.getBookDetail();
+        this.getOtherBooks();
     }
 
     /**

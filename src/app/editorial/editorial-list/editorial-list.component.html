@@ -19,6 +19,10 @@
                         <td style="cursor: pointer;">
                 <dd class="figure-caption" routerLink="/editorials/{{editorial.id}}">{{editorial.name}}</dd>
                 </td>
+                <td>
+                    <button [ngClass]="{ 'btn-primary': (!showEdit || editorial_edit_id != editorial.id), 'btn-danger': (showEdit && editorial_edit_id == editorial.id) }"
+                        type="button" class="btn" (click)="showHideEdit(editorial.id)">Edit</button>
+                </td>
                 </tr>
                 </tbody>
             </table>
@@ -26,6 +30,9 @@
         <div class="col-md-8">
             <div *ngIf="showCreate">
                 <app-editorial-create (cancel)="showHideCreate()" (create)="ngOnInit()" *ngIf="showCreate"></app-editorial-create>
+            </div>
+            <div *ngIf="showEdit">
+                <app-editorial-edit [editorial_id]="editorial_edit_id" (cancel)="showHideEdit(editorial_edit_id)" (update)="updateEditorial()"></app-editorial-edit>
             </div>
         </div>
 

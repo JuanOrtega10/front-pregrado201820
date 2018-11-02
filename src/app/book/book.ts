@@ -1,5 +1,5 @@
 import { Editorial } from '../editorial/editorial';
-
+type DateString = {month: number,day: number,year: number};
 
 
 export class Book {
@@ -31,7 +31,7 @@ export class Book {
     /**
      * The book's publishing date
      */
-    publishingdate: any;
+    publishingdate: DateString|string;
     
 
     /**

@@ -4,9 +4,8 @@ import {DatePipe} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 
 import {BookService} from '../book.service';
-import {AuthorService} from '../../author/author.service';
 import {EditorialService} from '../../editorial/editorial.service';
-type DateString = {month: number,day: number,year: number};
+type DateString = {month: number, day: number, year: number};
 import {Book} from '../book';
 import {Author} from '../../author/author';
 import {Editorial} from '../../editorial/editorial';
@@ -15,7 +14,7 @@ import {Editorial} from '../../editorial/editorial';
     selector: 'app-book-create',
     templateUrl: './book-create.component.html',
     styleUrls: ['./book-create.component.css'],
-    providers : [DatePipe]
+    providers: [DatePipe]
 })
 export class BookCreateComponent implements OnInit {
 
@@ -30,7 +29,6 @@ export class BookCreateComponent implements OnInit {
     constructor(
         private dp: DatePipe,
         private bookService: BookService,
-        private authorService: AuthorService,
         private editorialService: EditorialService,
         private toastrService: ToastrService,
         private router: Router
@@ -59,28 +57,6 @@ export class BookCreateComponent implements OnInit {
     bookAuthors: Author[];
 
     /**
-    * The title of the left column in the two-list component
-    * This list is passed as a parameter to the two-list component
-    */
-    titleLeft: String;
-
-    /**
-    * The title of the right column in the two-list component
-    * This list is passed as a parameter to the two-list component
-    */
-    titleRight: String;
-
-    /**
-    * Retrieves the list of authors in the BookStore
-    */
-    getAuthors(): void {
-        this.authorService.getAuthors()
-            .subscribe(authors => {
-                this.authors = authors;
-            });
-    }
-
-    /**
     * Retrieves the list of editorials in the BookStore
     */
     getEditorials(): void {
@@ -102,37 +78,19 @@ export class BookCreateComponent implements OnInit {
     }
 
     /**
-    * The function which updates the list of authors of the new book
-    * @param authors The updated list of authors of the book
-    */
-    selectBookAuthors(authors): void {
-        this.bookAuthors = authors;
-    }
-
-    /**
     * Creates a new book
     */
     createBook(): Book {
-        if (this.bookAuthors.length == 0) {
-            this.toastrService.error('The book must have at least one author!', 'Error');
-        } else {
-            let dateB: Date = new Date(this.book.publishingdate.year, this.book.publishingdate.month-1, this.book.publishingdate.day);
-            this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
-            this.bookService.createBook(this.book)
-                .subscribe(book => {
-                    this.book.id = book.id;
-                    this.bookService.updateBookAuthors(book.id, this.bookAuthors)
-                        .subscribe(() => {
-                            this.router.navigate(['/books/' + book.id]);
-                            this.toastrService.success("The book was successfully created", 'Book creation');
-                        }, err => {
-                            this.toastrService.error(err, 'Error');
-                        });
-                }, err => {
-                    this.toastrService.error(err, 'Error');
-                });
-            return this.book;
-        }
+        let dateB: Date = new Date((<DateString> this.book.publishingdate).year, (<DateString> this.book.publishingdate).month, (<DateString> this.book.publishingdate).day);
+        this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
+        this.bookService.createBook(this.book)
+            .subscribe(book => {
+                this.book.id = book.id;
+                this.router.navigate(['/books/' + book.id]);
+            }, err => {
+                this.toastrService.error(err, 'Error');
+            });
+        return this.book;
     }
 
     /**
@@ -141,10 +99,6 @@ export class BookCreateComponent implements OnInit {
     ngOnInit() {
         this.book = new Book();
         this.book.editorial = new Editorial();
-        this.bookAuthors = [];
-        this.titleLeft = 'Book\'s authors';
-        this.titleRight = 'All authors';
-        this.getAuthors();
         this.getEditorials();
     }
 

@@ -24,6 +24,10 @@ const routes: Routes = [
                 component: BookCreateComponent,
                 runGuardsAndResolvers: 'always'
             },
+//             {
+//                path: ':id/edit',
+//                component: BookAuthorsListSwapComponent
+//            },
             {
                 path: ':id',
                 component: BookDetailComponent,

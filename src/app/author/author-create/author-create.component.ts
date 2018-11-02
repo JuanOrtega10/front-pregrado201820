@@ -1,29 +1,28 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
-import {NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
-import { AuthorService } from '../author.service';
-import { Author } from '../author';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {DatePipe} from '@angular/common';
+import {ToastrService} from 'ngx-toastr';
+import {AuthorService} from '../author.service';
+import {Author} from '../author';
 
-type DateString = {month: number,day: number,year: number};
 @Component({
     selector: 'app-author-create',
     templateUrl: './author-create.component.html',
     styleUrls: ['./author-create.component.css'],
-    providers : [DatePipe]
+    providers: [DatePipe]
 })
 export class AuthorCreateComponent implements OnInit {
 
     /**
     * Constructor for the component
+    * @param dp DatePipe to format the date.
     * @param authorService The author's services provider
     * @param toastrService The toastr to show messages to the user
     */
     constructor(
-        private dp : DatePipe,
+        private dp: DatePipe,
         private authorService: AuthorService,
         private toastrService: ToastrService
-    ) { }
+    ) {}
 
     /**
     * The new author
@@ -46,9 +45,9 @@ export class AuthorCreateComponent implements OnInit {
     * Creates an author
     */
     createAuthor(): Author {
-      
-       let dateB: Date = new Date(this.author.birthDate.year, this.author.birthDate.month-1, this.author.birthDate.day);
-       
+
+        let dateB: Date = new Date(this.author.birthDate.year, this.author.birthDate.month - 1, this.author.birthDate.day);
+
         this.author.birthDate = this.dp.transform(dateB, 'yyyy-MM-dd');
         console.log(this.author);
         this.authorService.createAuthor(this.author)
@@ -56,9 +55,9 @@ export class AuthorCreateComponent implements OnInit {
                 this.author = author;
                 this.create.emit();
                 this.toastrService.success("The author was created", "Author creation");
-                
+
             });
-            return this.author;
+        return this.author;
     }
 
     /**

@@ -47,4 +47,13 @@ export class AuthorService {
         return this.http.post<Author>(API_URL + authors, author);
     }
     
+    /**
+    * Updates an author
+    * @param author The author's information updated
+    * @returns The confirmation that the author was updated
+    */
+    updateAuthor(author): Observable<AuthorDetail> {
+        return this.http.put<AuthorDetail>(API_URL + authors + '/' + author.id, author);
+    }
+    
 }

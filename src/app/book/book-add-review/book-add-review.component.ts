@@ -31,6 +31,8 @@ export class BookAddReviewComponent implements OnInit, OnChanges {
     * The review to post
     */
     review: Review;
+    
+    public isCollapsed = true;
 
     /**
     * The Event Emitter which sends the signal when a review has just been posted
