@@ -5,7 +5,6 @@ import {ToastrService} from 'ngx-toastr';
 
 import {BookService} from '../book.service';
 import {EditorialService} from '../../editorial/editorial.service';
-type DateString = {month: number, day: number, year: number};
 import {Book} from '../book';
 import {Author} from '../../author/author';
 import {Editorial} from '../../editorial/editorial';
@@ -81,7 +80,7 @@ export class BookCreateComponent implements OnInit {
     * Creates a new book
     */
     createBook(): Book {
-        let dateB: Date = new Date((<DateString> this.book.publishingdate).year, (<DateString> this.book.publishingdate).month, (<DateString> this.book.publishingdate).day);
+        let dateB: Date = new Date(this.book.publishingdate.year, this.book.publishingdate.month - 1, this.book.publishingdate.day);
         this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
         this.bookService.createBook(this.book)
             .subscribe(book => {
