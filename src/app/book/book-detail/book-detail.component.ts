@@ -57,6 +57,8 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     */
     navigationSubscription;
 
+    showEdit: boolean;
+
     /**
      * The child BookReviewListComponent
      */
@@ -124,6 +126,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         this.bookDetail = new BookDetail();
         this.getBookDetail();
         this.getOtherBooks();
+        this.showEdit = true;
     }
 
     /**

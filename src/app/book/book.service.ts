@@ -59,4 +59,12 @@ export class BookService {
         return this.http.post<Review>(API_URL + books + '/' + bookId + reviews, review);
     }
 
+    /**
+        * Updates a new book
+        * @param book The updated book
+        * @returns The updated book
+        */
+    updateBook(book): Observable<BookDetail> {
+        return this.http.put<BookDetail>(API_URL + books + '/' + book.id, book);
+    }
 }
