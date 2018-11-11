@@ -18,8 +18,8 @@
                     <tr *ngFor = "let author of authors" >
                         <td style="cursor: pointer;" (click)="onSelected(author.id)"> <dd>{{author.name}}</dd></td>
                         <td>
-                            <button [ngClass]="{ 'btn-primary': (!showEdit || selectedAuthor.id != author.id), 'btn-danger': (showEdit && selectedAuthor.id == author.id) }"
-                                type="button" class="btn" (click)="showHideEdit(author.id)">Edit</button>
+                            <i class="fa fa-pencil" 
+                                (click)="showHideEdit(author.id)"></i>
                         </td>
                     </tr>
                 </tbody>

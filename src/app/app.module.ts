@@ -1,19 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpErrorInterceptor } from './interceptors/httperrorinterceptor.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AuthorModule } from './author/author.module';
 import { BookModule } from './book/book.module';
 import { EditorialModule } from './editorial/editorial.module';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalDialogModule } from 'ngx-modal-dialog';
+
+
 
 @NgModule({
     declarations: [
@@ -23,6 +23,7 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        BrowserAnimationsModule,
         AuthorModule,
         BookModule,
         EditorialModule,
@@ -32,11 +33,8 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
             positionClass: 'toast-bottom-right',
             preventDuplicates: true,
         }),
-        BrowserAnimationsModule,
         NgxPaginationModule,
         NgbModule,
-        ModalDialogModule,
-        AngularFontAwesomeModule,
     ],
     bootstrap: [AppComponent],
     providers: [
