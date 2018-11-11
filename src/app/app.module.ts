@@ -1,17 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpErrorInterceptor } from './interceptors/httperrorinterceptor.service';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing/app-routing.module';
-import { AuthorModule } from './author/author.module';
-import { BookModule } from './book/book.module';
-import { EditorialModule } from './editorial/editorial.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpErrorInterceptor} from './interceptors/httperrorinterceptor.service';
+import {NgxPermissionsModule} from 'ngx-permissions';
+
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing/app-routing.module';
+import {AuthorModule} from './author/author.module';
+import {AuthModule} from './auth/auth.module';
+import {BookModule} from './book/book.module';
+import {EditorialModule} from './editorial/editorial.module';
+
+
+
 
 
 
@@ -25,6 +31,7 @@ import { EditorialModule } from './editorial/editorial.module';
         HttpClientModule,
         BrowserAnimationsModule,
         AuthorModule,
+        AuthModule,
         BookModule,
         EditorialModule,
         FormsModule,
@@ -34,7 +41,8 @@ import { EditorialModule } from './editorial/editorial.module';
             preventDuplicates: true,
         }),
         NgxPaginationModule,
-        NgbModule,
+        NgxPermissionsModule.forRoot(),
+        NgbModule
     ],
     bootstrap: [AppComponent],
     providers: [
@@ -45,4 +53,4 @@ import { EditorialModule } from './editorial/editorial.module';
         }
     ]
 })
-export class AppModule { }
+export class AppModule {}
