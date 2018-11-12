@@ -1,7 +1,4 @@
-/**
- * This class represents an author of the BookStore. 
- * It contains all the information relevant to the author.
- */
+
 export class Author {
     /**
     * The author's id
@@ -16,7 +13,7 @@ export class Author {
     /** Fecha de nacimiento del autor. Estamos utilizando de tipo  string. 
      * 
      */
-    birthDate: string;
+    birthDate: any;
     /**
      * The location of the author's profile picture
      */
@@ -28,3 +25,4 @@ export class Author {
     description: string;
     
 }
+

@@ -1,19 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpErrorInterceptor } from './interceptors/httperrorinterceptor.service';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing/app-routing.module';
-import { AuthorModule } from './author/author.module';
-import { BookModule } from './book/book.module';
-import { EditorialModule } from './editorial/editorial.module';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ToastrModule} from 'ngx-toastr';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpErrorInterceptor} from './interceptors/httperrorinterceptor.service';
+import {NgxPermissionsModule} from 'ngx-permissions';
 import { ModalDialogModule } from 'ngx-modal-dialog';
+
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing/app-routing.module';
+import {AuthorModule} from './author/author.module';
+import {AuthModule} from './auth/auth.module';
+import {BookModule} from './book/book.module';
+import {EditorialModule} from './editorial/editorial.module';
+
+
+
+
+
 
 @NgModule({
     declarations: [
@@ -23,12 +30,21 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        BrowserAnimationsModule,
         AuthorModule,
+        ModalDialogModule.forRoot(),
+        AuthModule,
         BookModule,
         EditorialModule,
         FormsModule,
-        ToastrModule.forRoot(),
-        BrowserAnimationsModule
+        ToastrModule.forRoot({
+            timeOut: 10000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: true,
+        }),
+        NgxPaginationModule,
+        NgxPermissionsModule.forRoot(),
+        NgbModule
     ],
     bootstrap: [AppComponent],
     providers: [
@@ -39,4 +55,4 @@ import { ModalDialogModule } from 'ngx-modal-dialog';
         }
     ]
 })
-export class AppModule { }
+export class AppModule {}

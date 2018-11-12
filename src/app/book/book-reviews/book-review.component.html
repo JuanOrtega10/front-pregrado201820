@@ -1,16 +1,9 @@
-
-<p>
-    <button type="button" class="btn btn-outline-primary" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        Reviews of the book
-    </button>
-</p>
-<div id="collapseExample" [ngbCollapse]="isCollapsed">
-<table class="table table-striped">
-    <tbody>
-        <tr *ngFor="let review of bookReviews">
-            <td><span id="book-reviewed"><b>{{review.book.name}}</b></span><span>: </span><span id="review-description">{{review.description}}</span></td>
-        </tr>
-    </tbody>
-</table>
+<div id="collapseReview" [ngbCollapse]="isCollapsed">
+    <table class="table table-striped">
+        <tbody>
+            <tr *ngFor="let review of bookReviews">
+                <td><span id="book-reviewed"><b>{{review.name}}</b></span><span>: </span><span id="review-description">{{review.description}}</span><br><span id="book-reviewed"><i>{{review.source}}</i></span></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

@@ -1,15 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {CommonModule} from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+import {NgxPermissionsModule} from 'ngx-permissions';
 
-import { AuthorService } from './author.service';
-import { AuthorListComponent } from './author-list/author-list.component';
-import { AppRoutingModule } from '../app-routing/app-routing.module';
-import { AuthorDetailComponent } from './author-detail/author-detail.component';
+import {AuthorService} from './author.service';
+import {AuthorListComponent} from './author-list/author-list.component';
+import {AppRoutingModule} from '../app-routing/app-routing.module';
+import {AuthorDetailComponent} from './author-detail/author-detail.component';
+import {AuthorCreateComponent} from './author-create/author-create.component';
+import {AuthorEditComponent} from './author-edit/author-edit.component';
+import {BookModule} from '../book/book.module';
 
-import { BookModule } from '../book/book.module';
+
 
 @NgModule({
     imports: [
@@ -17,13 +22,14 @@ import { BookModule } from '../book/book.module';
         AppRoutingModule,
         HttpClientModule,
         CommonModule,
+        NgxPermissionsModule,
         FormsModule,
-        BookModule
+        BookModule,
+        NgbModule
     ],
     declarations: [
-        AuthorListComponent, AuthorDetailComponent
+        AuthorListComponent, AuthorDetailComponent, AuthorCreateComponent, AuthorEditComponent
     ],
-    providers: [AuthorService],
-    bootstrap: [AuthorListComponent]
+    providers: [AuthorService]
 })
-export class AuthorModule { }
+export class AuthorModule {}

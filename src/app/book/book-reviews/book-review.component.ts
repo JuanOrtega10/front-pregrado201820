@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, } from '@angular/core';
-import { BookService } from '../book.service';
 import { Review } from '../review';
 
 @Component({
@@ -8,10 +7,17 @@ import { Review } from '../review';
 })
 export class BookReviewComponent implements OnInit {
     @Input() bookReviews : Review [];
-    public isCollapsed = true;
+    
+    public isCollapsed = false;
+    
+    /**
+     * The function called when a review is posted to update the reviews
+     */
+    updateReviews(reviews:Review[]): void {
+        this.bookReviews = reviews;
+    }
     
     ngOnInit(){
-        
     }
 }
 

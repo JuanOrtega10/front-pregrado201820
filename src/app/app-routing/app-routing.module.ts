@@ -1,13 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
+import {NgxPermissionsGuard} from 'ngx-permissions';
 
 import {AuthorListComponent} from '../author/author-list/author-list.component';
 import {BookListComponent} from '../book/book-list/book-list.component';
 import {EditorialListComponent} from '../editorial/editorial-list/editorial-list.component';
-import { AuthorDetailComponent } from '../author/author-detail/author-detail.component';
-import { BookDetailComponent } from '../book/book-detail/book-detail.component';
-import { EditorialDetailComponent } from '../editorial/editorial-detail/editorial-detail.component';
+import {AuthorDetailComponent} from '../author/author-detail/author-detail.component';
+import {BookDetailComponent} from '../book/book-detail/book-detail.component';
+import {EditorialDetailComponent} from '../editorial/editorial-detail/editorial-detail.component';
+import {BookCreateComponent} from '../book/book-create/book-create.component';
+import {BookEditComponent} from '../book/book-edit/book-edit.component';
+import { AuthLoginComponent } from '../auth/auth-login/auth-login.component';
+import { AuthSignUpComponent } from '../auth/auth-sign-up/auth-sign-up.component';
 
 const routes: Routes = [
 
@@ -17,11 +22,32 @@ const routes: Routes = [
             {
                 path: 'list',
                 component: BookListComponent
+            },
+            {
+                path: 'add',
+                component: BookCreateComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['ADMIN']
+                    }
+                }
+            },
+            {
+                path: ':id/edit',
+                component: BookEditComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['ADMIN']
+                    }
+                }
                 
             },
             {
                 path: ':id',
                 component: BookDetailComponent,
+                runGuardsAndResolvers: 'always'
             }
         ]
     },
@@ -34,7 +60,8 @@ const routes: Routes = [
             },
             {
                 path: ':id',
-                component: AuthorDetailComponent
+                component: AuthorDetailComponent,
+                runGuardsAndResolvers: 'always'
             }
         ]
     },
@@ -47,17 +74,43 @@ const routes: Routes = [
             },
             {
                 path: ':id',
-                component: EditorialDetailComponent
+                component: EditorialDetailComponent,
+                runGuardsAndResolvers: 'always'
             }
         ]
     },
      {
-         path: 'home',
-         component: BookListComponent
+        path: 'auth',
+        children: [
+            {
+                path: 'login',
+                component: AuthLoginComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['GUEST']
+                    }
+                }
+            },
+            {
+                path: ':sign-up',
+                component: AuthSignUpComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['GUEST']
+                    }
+                }
+            }
+        ]
     },
     {
-         path: '**',    
-         redirectTo: 'home',    
+        path: 'home',
+        component: BookListComponent
+    },
+    {
+        path: '**',
+        redirectTo: 'home',
     }
 ];
 
