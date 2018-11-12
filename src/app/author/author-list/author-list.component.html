@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-4">
             <br>
-            <div class="row justify-content-center align-self-center" *ngxPermissionsOnly="['ADMIN']"z>
+            <div class="row justify-content-center align-self-center" *ngxPermissionsOnly="['ADMIN']">
                 <button [ngClass]="{ 'btn-primary': !showCreate, 'btn-danger': showCreate }" type="button" class="btn"
                     (click)="showHideCreate()">Create an author</button>
             </div>
@@ -16,12 +16,15 @@
                 </thead>
                 <tbody>
                     <tr *ngFor = "let author of authors" >
-                        <td style="cursor: pointer;" (click)="onSelected(author.id)"> <dd>{{author.name}}</dd></td>
-                        <td>
-                            <i class="fa fa-pencil" 
-                                (click)="showHideEdit(author.id)"></i>
-                        </td>
-                    </tr>
+                        <td style="cursor: pointer;" (click)="onSelected(author.id)"> <dd>{{author.name}}</dd>
+                </td>
+                <td *ngxPermissionsOnly="['ADMIN']">
+                    <button class="btn btn-primary" (click)="showHideEdit(author.id)"><span class="fa fa-pencil"></span></button>
+                </td>
+                <td *ngxPermissionsOnly="['ADMIN']">
+                    <button class="btn btn-danger" (click)="deleteAuthor(author.id)"><span class="fa fa-trash"></span></button>
+                </td>
+                </tr>
                 </tbody>
             </table>
         </div>

@@ -5,6 +5,7 @@ import {AppRoutingModule} from '../app-routing/app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgxPermissionsModule} from 'ngx-permissions';
 
 import {BookListComponent} from './book-list/book-list.component';
 import {BookReviewComponent} from './book-reviews/book-review.component';
@@ -23,7 +24,8 @@ import {BookService} from './book.service';
         CommonModule,
         FormsModule,
         NgbModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxPermissionsModule
     ],
     declarations: [
         BookListComponent, BookDetailComponent, BookReviewComponent, BookCreateComponent, BookAddReviewComponent, BookEditComponent

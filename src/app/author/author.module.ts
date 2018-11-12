@@ -4,6 +4,8 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {NgxPermissionsModule} from 'ngx-permissions';
+
 import {AuthorService} from './author.service';
 import {AuthorListComponent} from './author-list/author-list.component';
 import {AppRoutingModule} from '../app-routing/app-routing.module';
@@ -20,6 +22,7 @@ import {BookModule} from '../book/book.module';
         AppRoutingModule,
         HttpClientModule,
         CommonModule,
+        NgxPermissionsModule,
         FormsModule,
         BookModule,
         NgbModule

@@ -56,4 +56,13 @@ export class AuthorService {
         return this.http.put<AuthorDetail>(API_URL + authors + '/' + author.id, author);
     }
     
+    /**
+    * Deletes an author from the BookStore
+    * @param authorId The id of the author
+    * @returns The confirmation that the author was deleted
+    */
+    deleteAuthor(authorId): Observable<boolean> {
+        return this.http.delete<boolean>(API_URL + authors + '/' + authorId);
+    }
+    
 }

@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {ModalDialogService, SimpleModalComponent} from 'ngx-modal-dialog';
+import {ToastrService} from 'ngx-toastr';
 
 import {AuthorService} from '../author.service';
 import {Author} from '../author';
@@ -20,7 +22,10 @@ export class AuthorListComponent implements OnInit {
     * @param toastrService The toastr to show messages to the user
     */
     constructor(
-        private authorService: AuthorService) {}
+        private authorService: AuthorService,
+        private modalDialogService: ModalDialogService,
+        private viewRef: ViewContainerRef,
+        private toastrService: ToastrService) {}
 
     /**
     * The list of authors which belong to the BookStore
@@ -86,7 +91,7 @@ export class AuthorListComponent implements OnInit {
             this.selectedAuthor = new AuthorDetail();
             this.getAuthorDetail();
         }
-        else { 
+        else {
             this.showEdit = false;
             this.showView = true;
         }
@@ -108,12 +113,40 @@ export class AuthorListComponent implements OnInit {
                 this.selectedAuthor = selectedAuthor
             });
     }
-    
-    updateAuthor(): void{
+
+    updateAuthor(): void {
         this.showEdit = false;
         this.showView = true;
     }
-    
+
+    /**
+    * Deletes an author
+    */
+    deleteAuthor(authorId): void {
+        this.modalDialogService.openDialog(this.viewRef, {
+            title: 'Delete an author',
+            childComponent: SimpleModalComponent,
+            data: {text: 'Are you sure your want to delete this author from the BookStore?'},
+            actionButtons: [
+                {
+                    text: 'Yes',
+                    buttonClass: 'btn btn-danger',
+                    onAction: () => {
+                        this.authorService.deleteAuthor(authorId).subscribe(() => {
+                            this.toastrService.error("The author was successfully deleted", "Author deleted");
+                            this.ngOnInit();
+                        }, err => {
+                            this.toastrService.error(err, "Error");
+                        });
+                        return true;
+                    }
+                },
+                {text: 'No', onAction: () => true}
+            ]
+        });
+    }
+
+
     /**
     * This will initialize the component by retrieving the list of authors from the service
     * This method will be called when the component is created

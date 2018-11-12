@@ -1,6 +1,7 @@
-import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ViewContainerRef} from '@angular/core';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
-
+import {ModalDialogService, SimpleModalComponent} from 'ngx-modal-dialog';
+import {ToastrService} from 'ngx-toastr';
 
 import {BookService} from '../book.service';
 import {Book} from '../book';
@@ -25,7 +26,10 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     constructor(
         private bookService: BookService,
         private route: ActivatedRoute,
-        private router: Router
+        private modalDialogService: ModalDialogService,
+        private router: Router,
+        private viewRef: ViewContainerRef,
+        private toastrService: ToastrService
     ) {
         //This is added so we can refresh the view when one of the books in
         //the "Other books" list is clicked
@@ -57,7 +61,6 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     */
     navigationSubscription;
 
-    showEdit: boolean;
 
     /**
      * The child BookReviewListComponent
@@ -117,6 +120,33 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
+* This function deletes the book from the BookStore 
+*/
+    deleteBook(): void {
+        this.modalDialogService.openDialog(this.viewRef, {
+            title: 'Delete a book',
+            childComponent: SimpleModalComponent,
+            data: {text: 'Are you sure your want to delete this book?'},
+            actionButtons: [
+                {
+                    text: 'Yes',
+                    buttonClass: 'btn btn-danger',
+                    onAction: () => {
+                        this.bookService.deleteBook(this.book_id).subscribe(book => {
+                            this.toastrService.success("The book  ", "Book deleted");
+                            this.router.navigate(['books/list']);
+                        }, err => {
+                            this.toastrService.error(err, "Error");
+                        });
+                        return true;
+                    }
+                },
+                {text: 'No', onAction: () => true}
+            ]
+        });
+    }
+
+    /**
     * The method which initilizes the component
     * We need to initialize the book and its editorial so that
     * they are never considered undefined
@@ -126,7 +156,6 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         this.bookDetail = new BookDetail();
         this.getBookDetail();
         this.getOtherBooks();
-        this.showEdit = true;
     }
 
     /**

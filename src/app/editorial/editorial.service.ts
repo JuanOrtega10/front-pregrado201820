@@ -55,4 +55,13 @@ export class EditorialService {
     updateEditorial(editorial): Observable<EditorialDetail> {
         return this.http.put<EditorialDetail>(API_URL + editorials + '/' + editorial.id, editorial);
     }
+    
+    /**
+    * Deletes an editorial
+    * @param editorialId The editorial which will be deleted
+    * @returns True if the editorial was deleted, false otherwise
+    */
+    deleteEditorial(editorialId): Observable<EditorialDetail> {
+        return this.http.delete<EditorialDetail>(API_URL + editorials + '/' + editorialId);
+    }
 }
