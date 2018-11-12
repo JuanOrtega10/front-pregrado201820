@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import {NgxPermissionsModule} from 'ngx-permissions';
 
 import {EditorialListComponent} from './editorial-list/editorial-list.component';
 import {EditorialService} from './editorial.service';
@@ -17,6 +18,7 @@ import {BookModule} from '../book/book.module';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
+        NgxPermissionsModule,
         CommonModule,
         FormsModule,
         BookModule

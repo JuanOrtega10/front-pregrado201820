@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {ModalDialogService, SimpleModalComponent} from 'ngx-modal-dialog';
+import {ToastrService} from 'ngx-toastr';
 
 import {Editorial} from '../editorial';
 import {EditorialService} from '../editorial.service';
@@ -19,7 +21,10 @@ export class EditorialListComponent implements OnInit {
     */
     constructor(
         private editorialService: EditorialService,
-    ) {}
+        private modalDialogService: ModalDialogService,
+        private viewRef: ViewContainerRef,
+        private toastrService: ToastrService) {}
+
 
     /**
     * The list of editorials which belong to the BookStore
@@ -76,6 +81,35 @@ export class EditorialListComponent implements OnInit {
     updateEditorial(): void {
         this.showEdit = false;
     }
+
+    /**
+    * Deletes an editorial
+    */
+    deleteEditorial(editorialId): void {
+        this.modalDialogService.openDialog(this.viewRef, {
+            title: 'Delete an editorial',
+            childComponent: SimpleModalComponent,
+            data: {text: 'Are you sure your want to delete this editorial from the BookStore?'},
+            actionButtons: [
+                {
+                    text: 'Yes',
+                    buttonClass: 'btn btn-danger',
+                    onAction: () => {
+                        this.editorialService.deleteEditorial(editorialId).subscribe(() => {
+                            this.toastrService.error("The editorial was successfully deleted", "Editorial deleted");
+                            this.ngOnInit();
+                        }, err => {
+                            this.toastrService.error(err, "Error");
+                        });
+                        return true;
+                    }
+                },
+                {text: 'No', onAction: () => true}
+            ]
+        });
+    }
+
+
 
     /**
     * This will initialize the component by retrieving the list of editorials from the service

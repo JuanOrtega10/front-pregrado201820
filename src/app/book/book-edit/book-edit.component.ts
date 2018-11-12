@@ -152,17 +152,13 @@ export class BookEditComponent implements OnInit {
     * This function updates the book
     */
     updateBook(): void {
-        if (this.book.authors.length == 0) {
-            this.toastrService.error('The book must have at least one author!', 'Error');
-        } else {
-            let dateB: Date = new Date(this.book.publishingdate.year, this.book.publishingdate.month - 1, this.book.publishingdate.day);
-            this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
-            this.bookService.updateBook(this.book)
-                .subscribe(() => {
-                    this.router.navigate(['/books/' + this.book.id]);
-                    this.toastrService.success("The book was successfully edited", 'Book edition');
-                });
-        }
+        let dateB: Date = new Date(this.book.publishingdate.year, this.book.publishingdate.month - 1, this.book.publishingdate.day);
+        this.book.publishingdate = this.dp.transform(dateB, 'yyyy-MM-dd');
+        this.bookService.updateBook(this.book)
+            .subscribe(() => {
+                this.router.navigate(['/books/' + this.book.id]);
+                this.toastrService.success("The book was successfully edited", 'Book edition');
+            });
     }
 
     /**
