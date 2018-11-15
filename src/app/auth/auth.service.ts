@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {NgxRolesService, NgxPermissionsService} from 'ngx-permissions'
-import 'rxjs/add/operator/catch';
+
 
 /**
  * The service provider for everything related to authentication
@@ -20,7 +20,7 @@ export class AuthService {
     start (): void {
         this.permissionsService.flushPermissions();
         this.roleService.flushRoles();
-        this.permissionsService.loadPermissions(['edit_author_permission', 'delete_author_permission', 'leave_review']);
+     
         const role = localStorage.getItem('role');
         if (!role) {
             this.setGuestRole();
@@ -38,13 +38,13 @@ export class AuthService {
 
     setClientRole (): void {
         this.roleService.flushRoles();
-        this.roleService.addRole('CLIENT', ['leave_review']);
+        this.roleService.addRole('CLIENT', ['']);
         localStorage.setItem('role', 'CLIENT');
     }
 
     setAdministratorRole (): void {
         this.roleService.flushRoles();
-        this.roleService.addRole('ADMIN', ['edit_author_permission', 'delete_author_permission']);
+        this.roleService.addRole('ADMIN', ['']);
         localStorage.setItem('role', 'ADMIN');
     }
 
